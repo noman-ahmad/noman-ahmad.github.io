@@ -6,6 +6,50 @@ document.addEventListener('DOMContentLoaded', function() {
     const themeToggle = document.querySelector('.theme-toggle');
     const root = document.documentElement;
 
+    // Typing animation
+    const typingText = document.querySelector('.typing-text');
+    const roles = [
+        'Full Stack Developer',
+        'Mobile App Developer',
+        'React Native Expert',
+        'iOS Developer',
+        'Problem Solver'
+    ];
+    let roleIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    const typingSpeed = 100;
+    const deletingSpeed = 50;
+    const pauseDelay = 2000;
+
+    function typeRole() {
+        const currentRole = roles[roleIndex];
+
+        if (isDeleting) {
+            typingText.textContent = currentRole.substring(0, charIndex - 1);
+            charIndex--;
+        } else {
+            typingText.textContent = currentRole.substring(0, charIndex + 1);
+            charIndex++;
+        }
+
+        let delay = isDeleting ? deletingSpeed : typingSpeed;
+
+        if (!isDeleting && charIndex === currentRole.length) {
+            delay = pauseDelay;
+            isDeleting = true;
+        } else if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            roleIndex = (roleIndex + 1) % roles.length;
+            delay = 500;
+        }
+
+        setTimeout(typeRole, delay);
+    }
+
+    // Start typing animation
+    typeRole();
+
     // Theme toggle functionality
     function setTheme(theme) {
         root.setAttribute('data-theme', theme);
@@ -125,26 +169,70 @@ document.addEventListener('DOMContentLoaded', function() {
             navLinks.classList.remove('active');
         });
     });
+
+    // Timeline scroll animations
+    const timelineItems = document.querySelectorAll('.timeline-item, .timeline-minor-event');
+
+    const timelineObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                // Add staggered delay based on element position
+                setTimeout(() => {
+                    entry.target.classList.add('animate-in');
+                }, index * 100);
+                timelineObserver.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.2,
+        rootMargin: '0px 0px -50px 0px'
+    });
+
+    timelineItems.forEach(item => {
+        timelineObserver.observe(item);
+    });
+
+    // Bento grid scroll animations
+    const bentoCards = document.querySelectorAll('.bento-card');
+
+    const bentoObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                // Get the index of the card for staggered animation
+                const cards = Array.from(bentoCards);
+                const index = cards.indexOf(entry.target);
+                setTimeout(() => {
+                    entry.target.classList.add('animate-in');
+                }, index * 100);
+                bentoObserver.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    });
+
+    bentoCards.forEach(card => {
+        bentoObserver.observe(card);
+    });
 });
 
-// Projects carousel scrolling
+// Projects carousel scrolling (legacy - keeping for compatibility)
 document.addEventListener('DOMContentLoaded', () => {
     const projectsGrid = document.querySelector('.projects-grid');
     const scrollLeft = document.querySelector('.scroll-left');
     const scrollRight = document.querySelector('.scroll-right');
-    const scrollAmount = 400; // Slightly more than card width to ensure next card is fully visible
+    const scrollAmount = 400;
 
     if (scrollLeft && scrollRight && projectsGrid) {
-        // Update scroll indicators visibility
         const updateScrollButtons = () => {
             scrollLeft.style.display = projectsGrid.scrollLeft > 0 ? 'flex' : 'none';
-            scrollRight.style.display = 
-                projectsGrid.scrollLeft < (projectsGrid.scrollWidth - projectsGrid.clientWidth - 10) 
-                ? 'flex' 
+            scrollRight.style.display =
+                projectsGrid.scrollLeft < (projectsGrid.scrollWidth - projectsGrid.clientWidth - 10)
+                ? 'flex'
                 : 'none';
         };
 
-        // Initial visibility check
         updateScrollButtons();
 
         // Scroll handlers
@@ -162,8 +250,8 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        // Update button visibility on scroll
-        projectsGrid.addEventListener('scroll', updateScrollButtons);
+        // // Update button visibility on scroll
+        // projectsGrid.addEventListener('scroll', updateScrollButtons);
 
         // Update button visibility on window resize
         window.addEventListener('resize', updateScrollButtons);
