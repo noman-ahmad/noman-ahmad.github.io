@@ -265,6 +265,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const indicators = document.querySelectorAll('.indicator');
     const prevBtn = document.querySelector('.control-btn.prev');
     const nextBtn = document.querySelector('.control-btn.next');
+
+    // Only run storybook code if elements exist
+    if (!storybook || !prevBtn || !nextBtn) return;
+
     let currentPage = 1;
 
     function updatePage(pageNumber) {
