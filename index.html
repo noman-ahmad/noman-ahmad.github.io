@@ -6,7 +6,7 @@
     <title>Noman Ahmad</title>
     <link rel="stylesheet" href="styles.css" />
     <meta property="og:image" content="assets/code.png" />
-    <link rel="icon" type="image/png" href="assets/code.png">
+    <link rel="icon" type="image/png" href="assets/code.png" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -74,21 +74,39 @@
     <section id="home" data-section-title="Home">
       <div class="home-container">
         <div class="home-content">
-          <h1 class="greeting">Hello, I am</h1>
-          <h1 class="name">Noman Ahmad</h1>
-          <h2 class="title">
-            <span class="highlight">Full Stack Developer</span>
+          <h1 class="greeting fade-in-up delay-1">Hello, I am</h1>
+          <h1 class="name fade-in-up delay-2">Noman Ahmad</h1>
+          <h2 class="title fade-in-up delay-3">
+            <span class="highlight typing-text"></span><span class="cursor">|</span>
           </h2>
-          <p class="description">
+          <p class="description fade-in-up delay-4">
             I'm a passionate developer with a keen interest in creating
             beautiful and functional applications. I love solving complex
             problems and turning ideas into reality through code.
           </p>
-          <div class="social-links">
-            <a href="https://github.com/noman-ahmad" target="_blank" class="social-link">
+          <div class="cta-buttons fade-in-up delay-5">
+            <a href="#projects" class="cta-button primary">
+              <i class="fas fa-briefcase"></i>
+              View My Work
+            </a>
+            <a href="assets/resume.pdf" download class="cta-button secondary">
+              <i class="fas fa-download"></i>
+              Download Resume
+            </a>
+          </div>
+          <div class="social-links fade-in-up delay-6">
+            <a
+              href="https://github.com/noman-ahmad"
+              target="_blank"
+              class="social-link"
+            >
               <i class="fab fa-github"></i>
             </a>
-            <a href="https://linkedin.com/in/noman-ahmad199916" target="_blank" class="social-link">
+            <a
+              href="https://linkedin.com/in/noman-ahmad199916"
+              target="_blank"
+              class="social-link"
+            >
               <i class="fab fa-linkedin"></i>
             </a>
             <a href="mailto:nomanahmad.dev@gmail.com" class="social-link">
@@ -96,12 +114,17 @@
             </a>
           </div>
         </div>
-        <div class="profile-image-container">
+        <div class="profile-image-container fade-in-up delay-3">
           <div class="profile-image">
             <img src="assets/profile.png" alt="Profile Picture" />
           </div>
         </div>
       </div>
+      <a href="#experience" class="scroll-indicator" aria-label="Scroll to next section">
+        <div class="scroll-arrow">
+          <i class="fas fa-chevron-down"></i>
+        </div>
+      </a>
     </section>
 
     <section id="experience" data-section-title="Experience">
@@ -141,7 +164,7 @@
                   Science</span
                 >
               </div>
-              <div class="timeline-minor-date">2015</div>
+              <div class="timeline-minor-date">2021</div>
             </div>
           </div>
           <div class="timeline-item">
@@ -170,7 +193,7 @@
           <div class="timeline-item">
             <div class="timeline-dot"></div>
             <div class="timeline-content">
-              <div class="timeline-date">2022 - Present</div>
+              <div class="timeline-date">2022 - 2025</div>
               <h3 class="timeline-title">Software Engineer</h3>
               <div class="company-wrapper">
                 <img
@@ -195,6 +218,32 @@
               </div>
             </div>
           </div>
+          <div class="timeline-item current">
+            <div class="timeline-dot current"></div>
+            <div class="timeline-content">
+              <span class="current-badge">Current</span>
+              <div class="timeline-date">2025 - Present</div>
+              <h3 class="timeline-title">Senior Software Engineer</h3>
+              <div class="company-wrapper">
+                <img
+                  src="assets/nttdata-logo.jpg"
+                  alt="NTT Data Logo"
+                  class="company-logo"
+                />
+                <h4 class="timeline-company">NTT Data</h4>
+              </div>
+              <p class="timeline-description">
+                Building enterprise software solutions with a focus on system
+                integration and cloud architecture.
+              </p>
+              <div class="timeline-tags">
+                <span class="tag">AWS</span>
+                <span class="tag">Salesforce</span>
+                <span class="tag">JavaScript</span>
+                <span class="tag">C#</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -213,69 +262,36 @@
           </div>
         </div>
 
-        <div class="projects-grid">
-          <!-- <div class="project-card">
-            <div class="project-header">
+        <div class="bento-grid">
+          <!-- Featured Project - Muslims App -->
+          <div class="bento-card featured">
+            <span class="project-badge">Featured</span>
+            <div class="bento-card-header">
               <div class="project-icon">
-                <i class="fas fa-robot"></i>
+                <i class="fa-solid fa-moon"></i>
               </div>
-              <h3 class="project-title">AI-Powered Task Manager</h3>
-              <div class="project-links">
-                <a
-                  href="https://github.com/your-repo-1"
-                  target="_blank"
-                  class="project-link"
-                >
-                  <i class="fab fa-github"></i>
-                </a>
-                <a
-                  href="https://demo-link-1.com"
-                  target="_blank"
-                  class="project-link"
-                >
-                  <i class="fas fa-external-link-alt"></i>
-                </a>
-              </div>
-            </div>
-            <div class="project-content">
-              <p class="project-description">
-                A smart task management application that uses machine learning
-                to prioritize and categorize tasks. Features natural language
-                processing for task input and intelligent deadline suggestions.
-              </p>
-              <div class="project-tech">
-                <span class="tech-tag">React</span>
-                <span class="tech-tag">Python</span>
-                <span class="tech-tag">TensorFlow</span>
-                <span class="tech-tag">MongoDB</span>
-              </div>
-            </div>
-          </div> -->
-
-          <div class="project-card">
-            <div class="project-header">
-              <div class="project-icon">
-                <i class="fas fa-moon"></i>
-              </div>
-              <h3 class="project-title">Muslims App</h3>
               <div class="project-links">
                 <a
                   href="https://apps.apple.com/in/app/muslims-app/id1660397990"
                   target="_blank"
-                  class="project-link app-store"
+                  class="project-link"
+                  aria-label="App Store"
                 >
                   <i class="fab fa-app-store-ios"></i>
                 </a>
                 <a
                   href="https://play.google.com/store/apps/details?id=com.deendev.muslimapp"
                   target="_blank"
-                  class="project-link play-store"
+                  class="project-link"
+                  aria-label="Play Store"
                 >
                   <i class="fab fa-google-play"></i>
                 </a>
               </div>
             </div>
-            <div class="project-content">
+            <div class="bento-card-content">
+              <span class="project-year">2023</span>
+              <h3 class="project-title">Muslims App</h3>
               <p class="project-description">
                 A comprehensive companion app for all Muslims. Includes location
                 based prayer times, compass for direction of prayer, The Holy
@@ -290,38 +306,129 @@
               </div>
             </div>
           </div>
-        </div>
 
-        <div class="section-divider"></div>
+          <!-- Movies Watch List App -->
+          <div class="bento-card">
+            <div class="bento-card-header">
+              <div class="project-icon">
+                <i class="fa-solid fa-film"></i>
+              </div>
+              <div class="project-links">
+                <a
+                  href="https://github.com/noman-ahmad/MyMoviesApp"
+                  target="_blank"
+                  class="project-link"
+                  aria-label="GitHub"
+                >
+                  <i class="fab fa-github"></i>
+                </a>
+              </div>
+            </div>
+            <div class="bento-card-content">
+              <span class="project-year">2021</span>
+              <h3 class="project-title">Movies Watch List</h3>
+              <p class="project-description">
+                Search for movies and track your watchlist. Add movies, mark as watched, and provide ratings/reviews with Core Data storage.
+              </p>
+              <div class="project-tech">
+                <span class="tech-tag">Swift</span>
+                <span class="tech-tag">SwiftUI</span>
+                <span class="tech-tag">Core Data</span>
+              </div>
+            </div>
+          </div>
 
-        <div class="skills-overview">
-          <div class="tech-icons-container">
-            <div class="tech-icon" data-tooltip="React">
-              <i class="fab fa-react"></i>
+          <!-- Space App -->
+          <div class="bento-card">
+            <div class="bento-card-header">
+              <div class="project-icon">
+                <i class="fa-solid fa-shuttle-space"></i>
+              </div>
+              <div class="project-links">
+                <a
+                  href="https://github.com/noman-ahmad/MySpaceApp"
+                  target="_blank"
+                  class="project-link"
+                  aria-label="GitHub"
+                >
+                  <i class="fab fa-github"></i>
+                </a>
+              </div>
             </div>
-            <div class="tech-icon" data-tooltip="Node.js">
-              <i class="fab fa-node-js"></i>
+            <div class="bento-card-content">
+              <span class="project-year">2020</span>
+              <h3 class="project-title">Space App</h3>
+              <p class="project-description">
+                Explore the solar system and beyond. Get detailed information about planets, moons, and celestial bodies.
+              </p>
+              <div class="project-tech">
+                <span class="tech-tag">Swift</span>
+                <span class="tech-tag">SwiftUI</span>
+              </div>
             </div>
-            <div class="tech-icon" data-tooltip="Python">
-              <i class="fab fa-python"></i>
+          </div>
+
+          <!-- NBA Stats App -->
+          <div class="bento-card">
+            <div class="bento-card-header">
+              <div class="project-icon">
+                <i class="fa-solid fa-basketball"></i>
+              </div>
+              <div class="project-links">
+                <a
+                  href="https://github.com/noman-ahmad/NBAStatsApp"
+                  target="_blank"
+                  class="project-link"
+                  aria-label="GitHub"
+                >
+                  <i class="fab fa-github"></i>
+                </a>
+              </div>
             </div>
-            <div class="tech-icon" data-tooltip="AWS">
-              <i class="fab fa-aws"></i>
+            <div class="bento-card-content">
+              <span class="project-year">2020</span>
+              <h3 class="project-title">NBA Stats App</h3>
+              <p class="project-description">
+                Real-time NBA stats and data about teams and players using third-party APIs.
+              </p>
+              <div class="project-tech">
+                <span class="tech-tag">Swift</span>
+                <span class="tech-tag">UIKit</span>
+              </div>
             </div>
-            <div class="tech-icon" data-tooltip="Docker">
-              <i class="fab fa-docker"></i>
-            </div>
-            <div class="tech-icon" data-tooltip="Git">
-              <i class="fab fa-git-alt"></i>
-            </div>
-            <div class="tech-icon" data-tooltip="JavaScript">
-              <i class="fab fa-js"></i>
-            </div>
-            <div class="tech-icon" data-tooltip="Swift">
-              <i class="fab fa-swift"></i>
-            </div>
-            <div class="tech-icon" data-tooltip="PostgreSQL">
-              <i class="fas fa-database"></i>
+          </div>
+
+          <!-- Skills Card -->
+          <div class="bento-card skills">
+            <h3 class="skills-title">Tech Stack</h3>
+            <div class="tech-icons-grid">
+              <div class="tech-icon-item" data-tooltip="React">
+                <i class="fab fa-react"></i>
+              </div>
+              <div class="tech-icon-item" data-tooltip="Node.js">
+                <i class="fab fa-node-js"></i>
+              </div>
+              <div class="tech-icon-item" data-tooltip="Python">
+                <i class="fab fa-python"></i>
+              </div>
+              <div class="tech-icon-item" data-tooltip="AWS">
+                <i class="fab fa-aws"></i>
+              </div>
+              <div class="tech-icon-item" data-tooltip="Docker">
+                <i class="fab fa-docker"></i>
+              </div>
+              <div class="tech-icon-item" data-tooltip="Git">
+                <i class="fab fa-git-alt"></i>
+              </div>
+              <div class="tech-icon-item" data-tooltip="JavaScript">
+                <i class="fab fa-js"></i>
+              </div>
+              <div class="tech-icon-item" data-tooltip="Swift">
+                <i class="fab fa-swift"></i>
+              </div>
+              <div class="tech-icon-item" data-tooltip="PostgreSQL">
+                <i class="fas fa-database"></i>
+              </div>
             </div>
           </div>
         </div>
