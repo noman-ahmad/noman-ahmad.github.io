@@ -1,1 +1,8 @@
 .DS_Store
+
+# Source artwork, kept locally only. The 3.2 MB club-logo.gif is committed to
+# git history forever once added, so the optimised assets/club-logo.webp is what the
+# site actually ships (744 bytes, generated from club-favicon-512x512.png).
+assets/club-logo.gif
+assets/club-favicon-512x512.png
+assets/new-profile.jpeg

@@ -2,439 +2,799 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Noman Ahmad</title>
-    <link rel="stylesheet" href="styles.css" />
-    <meta property="og:image" content="assets/code.png" />
-    <link rel="icon" type="image/png" href="assets/code.png" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-    />
-  </head>
-  <body>
-    <button class="theme-toggle" aria-label="Toggle theme">
-      <svg
-        class="sun-icon"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      >
-        <circle cx="12" cy="12" r="5" />
-        <line x1="12" y1="1" x2="12" y2="3" />
-        <line x1="12" y1="21" x2="12" y2="23" />
-        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
-        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-        <line x1="1" y1="12" x2="3" y2="12" />
-        <line x1="21" y1="12" x2="23" y2="12" />
-        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
-        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
-      </svg>
-      <svg
-        class="moon-icon"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      >
-        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-      </svg>
-    </button>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
 
-    <nav>
-      <div class="nav-container">
-        <div class="nav-profile">
-          <img
-            src="assets/profile.png"
-            alt="Profile Picture"
-            class="nav-profile-img"
-          />
-        </div>
-        <div class="nav-title" id="current-section">Home</div>
-        <button class="hamburger" aria-label="Menu">
-          <span class="hamburger-line"></span>
-          <span class="hamburger-line"></span>
-          <span class="hamburger-line"></span>
-        </button>
-        <div class="nav-links">
-          <a href="#home">Home</a>
+    <title>Noman Ahmad — Senior Mobile Engineer</title>
+    <meta
+      name="description"
+      content="Noman Ahmad is a senior mobile engineer building iOS and cross-platform apps with React Native, Swift and SwiftUI. Four years shipping to the App Store and Google Play. Currently at Club."
+    />
+    <link rel="canonical" href="https://noman-ahmad.github.io/" />
+    <meta name="author" content="Noman Ahmad" />
+
+    <!-- Open Graph / social -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://noman-ahmad.github.io/" />
+    <meta property="og:title" content="Noman Ahmad — Senior Mobile Engineer" />
+    <meta
+      property="og:description"
+      content="Senior mobile engineer. React Native, Swift and SwiftUI, shipped to the App Store and Google Play. Currently at Club."
+    />
+    <meta property="og:image" content="https://noman-ahmad.github.io/assets/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta
+      property="og:image:alt"
+      content="Noman Ahmad — Senior Mobile Engineer. React Native, Swift, SwiftUI, TypeScript. Currently at Club."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Noman Ahmad — Senior Mobile Engineer" />
+    <meta
+      name="twitter:description"
+      content="Senior mobile engineer. React Native, Swift and SwiftUI, shipped to the App Store and Google Play. Currently at Club."
+    />
+    <meta name="twitter:image" content="https://noman-ahmad.github.io/assets/og-image.jpg" />
+    <meta
+      name="twitter:image:alt"
+      content="Noman Ahmad — Senior Mobile Engineer. React Native, Swift, SwiftUI, TypeScript. Currently at Club."
+    />
+
+    <meta name="theme-color" content="#fcfcfd" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0b0b0f" media="(prefers-color-scheme: dark)" />
+
+    <!-- SVG for browsers that take it, ICO/PNG for the ones that don't.
+         Apple touch icons must be PNG — WebP is silently ignored. -->
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="assets/favicon-32.png" type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Set the theme before first paint so there is no flash of the wrong colours.
+         The `js` class gates the scroll-reveal styles, so content stays visible
+         if scripting is unavailable. -->
+    <script>
+      (function () {
+        var el = document.documentElement;
+        el.classList.add("js");
+        var theme = "light";
+        try {
+          theme =
+            localStorage.getItem("theme") ||
+            (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        } catch (e) {
+          /* storage blocked — fall back to light */
+        }
+        el.setAttribute("data-theme", theme);
+      })();
+    </script>
+
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <!-- Icon sprite -->
+    <svg class="sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <symbol id="i-sun" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="4" />
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
+        </symbol>
+        <symbol id="i-moon" viewBox="0 0 24 24">
+          <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+        </symbol>
+        <symbol id="i-menu" viewBox="0 0 24 24">
+          <path d="M4 7h16M4 12h16M4 17h16" />
+        </symbol>
+        <symbol id="i-close" viewBox="0 0 24 24">
+          <path d="M18 6 6 18M6 6l12 12" />
+        </symbol>
+        <symbol id="i-mail" viewBox="0 0 24 24">
+          <rect x="2" y="4" width="20" height="16" rx="2" />
+          <path d="m2.5 6.5 8.4 5.9a2 2 0 0 0 2.2 0l8.4-5.9" />
+        </symbol>
+        <symbol id="i-download" viewBox="0 0 24 24">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" />
+        </symbol>
+        <symbol id="i-arrow-right" viewBox="0 0 24 24">
+          <path d="M5 12h14M13 6l6 6-6 6" />
+        </symbol>
+        <symbol id="i-arrow-down" viewBox="0 0 24 24">
+          <path d="m6 9 6 6 6-6" />
+        </symbol>
+        <symbol id="i-external" viewBox="0 0 24 24">
+          <path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+        </symbol>
+        <symbol id="i-pin" viewBox="0 0 24 24">
+          <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+          <circle cx="12" cy="10" r="3" />
+        </symbol>
+        <symbol id="i-cap" viewBox="0 0 24 24">
+          <path d="M22 10 12 5 2 10l10 5 10-5Z" />
+          <path d="M6 12.2V17c3.3 2.7 8.7 2.7 12 0v-4.8" />
+        </symbol>
+        <symbol id="i-film" viewBox="0 0 24 24">
+          <rect x="2.5" y="5" width="19" height="14" rx="3" />
+          <path d="m10.4 9.3 5.1 2.7-5.1 2.7z" />
+        </symbol>
+        <symbol id="i-planet" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="6.5" />
+          <ellipse cx="12" cy="12" rx="11" ry="4" transform="rotate(-25 12 12)" />
+        </symbol>
+        <symbol id="i-ball" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="9" />
+          <path d="M12 3v18M3 12h18M5.2 5.2c3.6 3.6 3.6 10 0 13.6M18.8 5.2c-3.6 3.6-3.6 10 0 13.6" />
+        </symbol>
+        <symbol id="i-filter" viewBox="0 0 24 24">
+          <path d="M3 5h18l-7 8v6l-4 2v-8Z" />
+        </symbol>
+        <symbol id="i-arrow-up" viewBox="0 0 24 24">
+          <path d="M12 19V5M5 12l7-7 7 7" />
+        </symbol>
+        <symbol id="i-copy" viewBox="0 0 24 24">
+          <rect x="9" y="9" width="12" height="12" rx="2" />
+          <path d="M5 15V5a2 2 0 0 1 2-2h10" />
+        </symbol>
+        <symbol id="i-check" viewBox="0 0 24 24">
+          <path d="m4 12.5 5.5 5.5L20 7" />
+        </symbol>
+        <symbol id="i-code" viewBox="0 0 24 24">
+          <path d="m16 18 6-6-6-6M8 6l-6 6 6 6M14 4l-4 16" />
+        </symbol>
+        <symbol id="i-github" viewBox="0 0 24 24">
+          <path fill="currentColor" stroke="none" d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1-.7 0-.7 0-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17 5.6 18 5.9 18 5.9c.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .5Z" />
+        </symbol>
+        <symbol id="i-linkedin" viewBox="0 0 24 24">
+          <path fill="currentColor" stroke="none" d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.44-2.14 2.94v5.67H9.35V9h3.42v1.56h.04a3.75 3.75 0 0 1 3.37-1.85c3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13Zm1.78 13.02H3.55V9h3.57v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z" />
+        </symbol>
+        <symbol id="i-apple" viewBox="0 0 24 24">
+          <path fill="currentColor" stroke="none" d="M17.05 12.72c-.03-2.9 2.37-4.3 2.48-4.36-1.35-1.98-3.46-2.25-4.21-2.28-1.79-.18-3.5 1.05-4.42 1.05-.91 0-2.32-1.03-3.81-1-1.96.03-3.77 1.14-4.78 2.89-2.04 3.53-.52 8.76 1.46 11.63.97 1.4 2.12 2.98 3.63 2.92 1.46-.06 2.01-.94 3.77-.94s2.26.94 3.8.91c1.57-.03 2.56-1.43 3.52-2.84 1.11-1.63 1.56-3.21 1.59-3.29-.04-.02-3.05-1.17-3.08-4.65ZM14.4 4.02c.8-.98 1.35-2.33 1.2-3.68-1.16.05-2.57.78-3.4 1.75-.75.86-1.4 2.24-1.23 3.56 1.3.1 2.62-.66 3.43-1.63Z" />
+        </symbol>
+        <symbol id="i-play" viewBox="0 0 24 24">
+          <path fill="currentColor" stroke="none" d="M1.34.92a1.49 1.49 0 0 0-.3.89v20.4c0 .32.1.62.3.88l10.56-10.5L1.34.93Zm12.2 10.12 3.33-3.3L2.64.19a1.49 1.49 0 0 0-.7-.18l11.6 11.03Zm0 1.77L1.94 23.99c.23.01.47-.04.7-.18l14.23-8.05-3.33-3.3Zm8.48-1.51-3.92-2.22-3.51 3.49 3.54 3.52 3.89-2.2a1.49 1.49 0 0 0 0-2.59Z" />
+        </symbol>
+      </defs>
+    </svg>
+
+    <header class="site-header" id="site-header">
+      <div class="header-inner">
+        <a class="brand" href="#home" aria-label="Noman Ahmad — home">
+          <span class="brand-mark" aria-hidden="true">NA</span>
+          <span class="brand-name">Noman Ahmad</span>
+        </a>
+
+        <nav class="nav" id="nav" aria-label="Main">
+          <a href="#about">About</a>
           <a href="#experience">Experience</a>
           <a href="#projects">Projects</a>
-        </div>
-      </div>
-    </nav>
+          <a href="#contact">Contact</a>
+          <span class="nav-indicator" aria-hidden="true"></span>
+        </nav>
 
-    <section id="home" data-section-title="Home">
-      <div class="home-container">
-        <div class="home-content">
-          <h1 class="greeting fade-in-up delay-1">Hello, I am</h1>
-          <h1 class="name fade-in-up delay-2">Noman Ahmad</h1>
-          <h2 class="title fade-in-up delay-3">
-            <span class="highlight typing-text"></span><span class="cursor">|</span>
-          </h2>
-          <p class="description fade-in-up delay-4">
-            I'm a passionate developer with a keen interest in creating
-            beautiful and functional applications. I love solving complex
-            problems and turning ideas into reality through code.
-          </p>
-          <div class="cta-buttons fade-in-up delay-5">
-            <a href="#projects" class="cta-button primary">
-              <i class="fas fa-briefcase"></i>
-              View My Work
-            </a>
-            <a href="assets/resume.pdf" download class="cta-button secondary">
-              <i class="fas fa-download"></i>
-              Download Resume
-            </a>
-          </div>
-          <div class="social-links fade-in-up delay-6">
-            <a
-              href="https://github.com/noman-ahmad"
-              target="_blank"
-              class="social-link"
-            >
-              <i class="fab fa-github"></i>
-            </a>
-            <a
-              href="https://linkedin.com/in/noman-ahmad199916"
-              target="_blank"
-              class="social-link"
-            >
-              <i class="fab fa-linkedin"></i>
-            </a>
-            <a href="mailto:nomanahmad.dev@gmail.com" class="social-link">
-              <i class="fas fa-envelope"></i>
-            </a>
-          </div>
-        </div>
-        <div class="profile-image-container fade-in-up delay-3">
-          <div class="profile-image">
-            <img src="assets/profile.png" alt="Profile Picture" />
-          </div>
+        <div class="header-actions">
+          <button class="icon-btn theme-toggle" type="button" aria-label="Switch to dark theme" aria-pressed="false">
+            <svg class="icon icon-sun" aria-hidden="true"><use href="#i-sun" /></svg>
+            <svg class="icon icon-moon" aria-hidden="true"><use href="#i-moon" /></svg>
+          </button>
+          <button
+            class="icon-btn menu-toggle"
+            type="button"
+            aria-label="Open menu"
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+          >
+            <svg class="icon icon-open" aria-hidden="true"><use href="#i-menu" /></svg>
+            <svg class="icon icon-shut" aria-hidden="true"><use href="#i-close" /></svg>
+          </button>
         </div>
       </div>
-      <a href="#experience" class="scroll-indicator" aria-label="Scroll to next section">
-        <div class="scroll-arrow">
-          <i class="fas fa-chevron-down"></i>
-        </div>
+      <div class="scroll-progress" aria-hidden="true"><span></span></div>
+    </header>
+
+    <div class="mobile-menu" id="mobile-menu" hidden>
+      <nav aria-label="Mobile">
+        <a href="#about"><span>01</span> About</a>
+        <a href="#experience"><span>02</span> Experience</a>
+        <a href="#projects"><span>03</span> Projects</a>
+        <a href="#contact"><span>04</span> Contact</a>
+      </nav>
+      <a class="btn btn-primary" href="assets/resume.pdf" download>
+        <svg class="icon" aria-hidden="true"><use href="#i-download" /></svg>
+        Download résumé
       </a>
-    </section>
+    </div>
 
-    <section id="experience" data-section-title="Experience">
-      <div class="experience-container">
-        <h1 class="section-title">Experience</h1>
-        <div class="timeline">
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-content">
-              <div class="timeline-date">2020-2021</div>
-              <h3 class="timeline-title">Teaching Assistant</h3>
-              <div class="company-wrapper">
-                <img
-                  src="assets/hunter-logo.jpeg"
-                  alt="Tech Company Inc. Logo"
-                  class="company-logo"
-                />
-                <h4 class="timeline-company">Hunter College</h4>
-              </div>
-              <p class="timeline-description">
-                Tutored students in computer science, data structures and
-                algorithms.
-              </p>
-              <div class="timeline-tags">
-                <span class="tag">Python</span>
-                <span class="tag">C/C++</span>
-              </div>
+    <main id="main">
+      <!-- ── Hero ───────────────────────────────────────────── -->
+      <section id="home" class="hero">
+        <div class="hero-bg" aria-hidden="true">
+          <span class="aurora aurora-1"></span>
+          <span class="aurora aurora-2"></span>
+          <span class="aurora aurora-3"></span>
+          <span class="hero-grid"></span>
+          <span class="hero-spot"></span>
+        </div>
+        <div class="container hero-inner">
+          <div class="hero-copy">
+            <h1 class="hero-title reveal" data-reveal>Noman Ahmad</h1>
+
+            <p class="hero-role reveal" data-reveal data-reveal-delay="2">
+              <span class="typed" data-typed>Senior Mobile Engineer</span><span class="caret" aria-hidden="true"></span>
+            </p>
+
+            <p class="hero-desc reveal" data-reveal data-reveal-delay="3">
+              I build mobile products — React&nbsp;Native and native SwiftUI, shipped to the
+              App Store and Google Play. Four years of it, including an app read in 90+
+              languages. I write the services behind them too when the work needs it.
+            </p>
+
+            <div class="hero-actions reveal" data-reveal data-reveal-delay="4">
+              <a class="btn btn-primary" href="#projects">
+                View my work
+                <svg class="icon" aria-hidden="true"><use href="#i-arrow-right" /></svg>
+              </a>
+              <a class="btn btn-ghost" href="assets/resume.pdf" download>
+                <svg class="icon" aria-hidden="true"><use href="#i-download" /></svg>
+                Résumé
+              </a>
+            </div>
+
+            <ul class="hero-meta reveal" data-reveal data-reveal-delay="5">
+              <li>
+                <svg class="icon" aria-hidden="true"><use href="#i-pin" /></svg>
+                New York, NY
+              </li>
+              <li>
+                <svg class="icon" aria-hidden="true"><use href="#i-cap" /></svg>
+                B.S. Computer Science, Hunter College
+              </li>
+            </ul>
+
+            <div class="socials reveal" data-reveal data-reveal-delay="6">
+              <a href="https://github.com/noman-ahmad" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                <svg class="icon" aria-hidden="true"><use href="#i-github" /></svg>
+              </a>
+              <a href="https://linkedin.com/in/noman-ahmad199916" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                <svg class="icon" aria-hidden="true"><use href="#i-linkedin" /></svg>
+              </a>
+              <a href="mailto:nomanahmad.dev@gmail.com" aria-label="Email">
+                <svg class="icon" aria-hidden="true"><use href="#i-mail" /></svg>
+              </a>
             </div>
           </div>
-          <div class="timeline-minor-event">
-            <div class="timeline-dot minor"></div>
-            <div class="timeline-minor-content">
-              <div class="content-wrapper">
-                <i class="fas fa-graduation-cap"></i>
-                <span
-                  >Graduated from Hunter College with a Bachelor's in Computer
-                  Science</span
-                >
-              </div>
-              <div class="timeline-minor-date">2021</div>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-content">
-              <div class="timeline-date">2022</div>
-              <h3 class="timeline-title">Software Engineer Intern</h3>
-              <div class="company-wrapper">
+
+          <div class="hero-photo reveal" data-reveal data-reveal-delay="3">
+            <div class="photo-frame">
+              <picture>
+                <source srcset="assets/profile.webp" type="image/webp" />
                 <img
-                  src="assets/potato-logo.jpeg"
-                  alt="Digital Solutions Ltd. Logo"
-                  class="company-logo"
+                  src="assets/profile.jpg"
+                  alt="Portrait of Noman Ahmad"
+                  width="720"
+                  height="720"
+                  fetchpriority="high"
+                  decoding="async"
                 />
-                <h4 class="timeline-company">Potato TV</h4>
-              </div>
-              <p class="timeline-description">
-                I created mobile app experiences for the Potato TV iOS app,
-                which aimed to provide streaming sharing capabilities to its
-                users.
-              </p>
-              <div class="timeline-tags">
-                <span class="tag">Swift</span>
-              </div>
+              </picture>
             </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-content">
-              <div class="timeline-date">2022 - 2025</div>
-              <h3 class="timeline-title">Software Engineer</h3>
-              <div class="company-wrapper">
-                <img
-                  src="assets/sunnova-logo.png"
-                  alt="Creative Web Agency Logo"
-                  class="company-logo"
-                />
-                <h4 class="timeline-company">Sunnova Energy</h4>
-              </div>
-              <p class="timeline-description">
-                I work as a full stack developer on mobile and web applications
-                aiming to provide experiences to users and dealers of Sunnovas
-                solar products.
-              </p>
-              <div class="timeline-tags">
-                <span class="tag">React/React Native</span>
-                <span class="tag">Python</span>
-                <span class="tag">TypeScript</span>
-                <span class="tag">Node.js</span>
-                <span class="tag">AWS</span>
-                <span class="tag">.NET C#</span>
-              </div>
-            </div>
-          </div>
-          <div class="timeline-item current">
-            <div class="timeline-dot current"></div>
-            <div class="timeline-content">
-              <span class="current-badge">Current</span>
-              <div class="timeline-date">2025 - Present</div>
-              <h3 class="timeline-title">Senior Software Engineer</h3>
-              <div class="company-wrapper">
-                <img
-                  src="assets/nttdata-logo.jpg"
-                  alt="NTT Data Logo"
-                  class="company-logo"
-                />
-                <h4 class="timeline-company">NTT Data</h4>
-              </div>
-              <p class="timeline-description">
-                Building enterprise software solutions with a focus on system
-                integration and cloud architecture.
-              </p>
-              <div class="timeline-tags">
-                <span class="tag">AWS</span>
-                <span class="tag">Salesforce</span>
-                <span class="tag">JavaScript</span>
-                <span class="tag">C#</span>
+            <div class="photo-badge">
+              <img
+                class="logo-bleed"
+                src="assets/club-logo.webp"
+                alt=""
+                width="128"
+                height="128"
+                loading="lazy"
+              />
+              <div>
+                <span class="photo-badge-label">Currently</span>
+                <strong>Club</strong>
               </div>
             </div>
           </div>
         </div>
+
+        <div class="container hero-rail reveal" data-reveal data-reveal-delay="6">
+          <span class="rail-label">Previously at</span>
+          <ul class="rail-logos">
+            <li>
+              <a href="https://www.nttdata.com" target="_blank" rel="noopener noreferrer">
+                <img src="assets/nttdata-logo.webp" alt="" width="36" height="36" loading="lazy" />
+                NTT Data
+              </a>
+            </li>
+            <li>
+              <a href="https://www.sunnova.com" target="_blank" rel="noopener noreferrer">
+                <img src="assets/sunnova-logo.webp" alt="" width="36" height="36" loading="lazy" />
+                Sunnova Energy
+              </a>
+            </li>
+            <li>
+              <span>
+                <img src="assets/potato-logo.webp" alt="" width="36" height="36" loading="lazy" />
+                Potato TV
+              </span>
+            </li>
+            <li>
+              <a href="https://www.hunter.cuny.edu" target="_blank" rel="noopener noreferrer">
+                <img src="assets/hunter-logo.webp" alt="" width="36" height="36" loading="lazy" />
+                Hunter College
+              </a>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ── At a glance ────────────────────────────────────── -->
+      <section class="stats" aria-label="At a glance">
+        <div class="container stats-grid">
+          <div class="stat reveal" data-reveal>
+            <span class="stat-num" data-count="4" data-suffix="+">4+</span>
+            <span class="stat-label">Years building production software</span>
+          </div>
+          <div class="stat reveal" data-reveal data-reveal-delay="1">
+            <span class="stat-num" data-count="5">5</span>
+            <span class="stat-label">Engineering teams shipped with</span>
+          </div>
+          <div class="stat reveal" data-reveal data-reveal-delay="2">
+            <span class="stat-num" data-count="90" data-suffix="+">90+</span>
+            <span class="stat-label">Languages in an app I shipped</span>
+          </div>
+          <div class="stat reveal" data-reveal data-reveal-delay="3">
+            <span class="stat-num" data-count="2">2</span>
+            <span class="stat-label">App stores live on today</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── About / toolkit ────────────────────────────────── -->
+      <section id="about" class="section">
+        <div class="container">
+          <header class="section-head reveal" data-reveal>
+            <span class="eyebrow">01 — About</span>
+            <h2>What I work with</h2>
+            <p>
+              Mobile is where I do my best work — four years of it across solar energy,
+              enterprise consulting and now a startup. I&rsquo;m comfortable following a
+              feature down into the backend when that&rsquo;s what shipping it takes.
+            </p>
+            <p class="section-hint">
+              <svg class="icon" aria-hidden="true"><use href="#i-filter" /></svg>
+              Tap any tag to see everywhere I&rsquo;ve used it.
+            </p>
+          </header>
+
+          <div class="stack-grid">
+            <article class="stack-card is-primary reveal" data-reveal data-reveal-delay="1">
+              <h3>Mobile</h3>
+              <ul class="chips">
+                <li><button class="chip" type="button" data-tech="react native" aria-pressed="false">React Native</button></li>
+                <li><button class="chip" type="button" data-tech="swift" aria-pressed="false">Swift</button></li>
+                <li><button class="chip" type="button" data-tech="swiftui" aria-pressed="false">SwiftUI</button></li>
+                <li><button class="chip" type="button" data-tech="uikit" aria-pressed="false">UIKit</button></li>
+                <li><button class="chip" type="button" data-tech="expo" aria-pressed="false">Expo</button></li>
+                <li><button class="chip" type="button" data-tech="ios" aria-pressed="false">iOS</button></li>
+                <li><button class="chip" type="button" data-tech="offline-first" aria-pressed="false">Offline-first</button></li>
+              </ul>
+            </article>
+            <article class="stack-card reveal" data-reveal data-reveal-delay="2">
+              <h3>Languages</h3>
+              <ul class="chips">
+                <li><button class="chip" type="button" data-tech="typescript" aria-pressed="false">TypeScript</button></li>
+                <li><button class="chip" type="button" data-tech="javascript" aria-pressed="false">JavaScript</button></li>
+                <li><button class="chip" type="button" data-tech="python" aria-pressed="false">Python</button></li>
+                <li><button class="chip" type="button" data-tech="c#" aria-pressed="false">C#</button></li>
+                <li><button class="chip" type="button" data-tech="swift" aria-pressed="false">Swift</button></li>
+                <li><button class="chip" type="button" data-tech="c,c++" aria-pressed="false">C / C++</button></li>
+                <li><button class="chip" type="button" data-tech="sql" aria-pressed="false">SQL</button></li>
+              </ul>
+            </article>
+            <article class="stack-card reveal" data-reveal data-reveal-delay="3">
+              <h3>Web</h3>
+              <ul class="chips">
+                <li><button class="chip" type="button" data-tech="react" aria-pressed="false">React</button></li>
+                <li><button class="chip" type="button" data-tech="html,css" aria-pressed="false">HTML &amp; CSS</button></li>
+                <li><button class="chip" type="button" data-tech="node.js" aria-pressed="false">Node.js</button></li>
+                <li><button class="chip" type="button" data-tech="rest" aria-pressed="false">REST APIs</button></li>
+              </ul>
+            </article>
+            <article class="stack-card is-muted reveal" data-reveal data-reveal-delay="4">
+              <h3>Also work with</h3>
+              <ul class="chips">
+                <li><button class="chip" type="button" data-tech=".net" aria-pressed="false">.NET</button></li>
+                <li><button class="chip" type="button" data-tech="postgresql" aria-pressed="false">PostgreSQL</button></li>
+                <li><button class="chip" type="button" data-tech="core data" aria-pressed="false">Core Data</button></li>
+                <li><button class="chip" type="button" data-tech="aws" aria-pressed="false">AWS</button></li>
+                <li><button class="chip" type="button" data-tech="salesforce" aria-pressed="false">Salesforce</button></li>
+                <li><button class="chip" type="button" data-tech="docker" aria-pressed="false">Docker</button></li>
+                <li><button class="chip" type="button" data-tech="git" aria-pressed="false">Git</button></li>
+                <li><button class="chip" type="button" data-tech="ci/cd" aria-pressed="false">CI / CD</button></li>
+                <li><button class="chip" type="button" data-tech="analytics" aria-pressed="false">Analytics</button></li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Experience ─────────────────────────────────────── -->
+      <section id="experience" class="section section-alt">
+        <div class="container">
+          <header class="section-head reveal" data-reveal>
+            <span class="eyebrow">02 — Experience</span>
+            <h2>Where I&rsquo;ve worked</h2>
+            <p>Most recent first.</p>
+          </header>
+
+          <ol class="timeline">
+            <li class="tl-item is-current reveal" data-reveal>
+              <div class="tl-marker" aria-hidden="true"></div>
+              <article class="tl-card">
+                <div class="tl-top">
+                  <span class="tl-date">2026 — Present</span>
+                  <span class="badge-current">Current</span>
+                </div>
+                <h3>Senior Mobile Engineer</h3>
+                <div class="tl-company">
+                  <img
+                    class="logo-bleed"
+                    src="assets/club-logo.webp"
+                    alt="Club logo"
+                    width="128"
+                    height="128"
+                    loading="lazy"
+                  />
+                  <a href="https://club.com" target="_blank" rel="noopener noreferrer">
+                    Club
+                    <svg class="icon" aria-hidden="true"><use href="#i-external" /></svg>
+                  </a>
+                </div>
+                <p>
+                  Building Club&rsquo;s mobile experience across a React&nbsp;Native and TypeScript
+                  codebase, dropping into native SwiftUI where the interaction calls for it.
+                </p>
+                <ul class="chips">
+                  <li><button class="chip" type="button" data-tech="react native" aria-pressed="false">React Native</button></li>
+                  <li><button class="chip" type="button" data-tech="typescript" aria-pressed="false">TypeScript</button></li>
+                  <li><button class="chip" type="button" data-tech="swift" aria-pressed="false">Swift</button></li>
+                  <li><button class="chip" type="button" data-tech="swiftui" aria-pressed="false">SwiftUI</button></li>
+                  <li><button class="chip" type="button" data-tech="ios" aria-pressed="false">iOS</button></li>
+                </ul>
+              </article>
+            </li>
+
+            <li class="tl-item reveal" data-reveal>
+              <div class="tl-marker" aria-hidden="true"></div>
+              <article class="tl-card">
+                <div class="tl-top"><span class="tl-date">2025 — 2026</span></div>
+                <h3>Senior Software Engineer</h3>
+                <div class="tl-company">
+                  <img src="assets/nttdata-logo.webp" alt="NTT Data logo" width="36" height="36" loading="lazy" />
+                  <a href="https://www.nttdata.com" target="_blank" rel="noopener noreferrer">
+                    NTT Data
+                    <svg class="icon" aria-hidden="true"><use href="#i-external" /></svg>
+                  </a>
+                </div>
+                <p>
+                  Enterprise integration work — connecting Salesforce platforms to AWS
+                  services and the applications sitting on top of them.
+                </p>
+                <ul class="chips">
+                  <li><button class="chip" type="button" data-tech="aws" aria-pressed="false">AWS</button></li>
+                  <li><button class="chip" type="button" data-tech="salesforce" aria-pressed="false">Salesforce</button></li>
+                  <li><button class="chip" type="button" data-tech="javascript" aria-pressed="false">JavaScript</button></li>
+                  <li><button class="chip" type="button" data-tech="c#" aria-pressed="false">C#</button></li>
+                </ul>
+              </article>
+            </li>
+
+            <li class="tl-item reveal" data-reveal>
+              <div class="tl-marker" aria-hidden="true"></div>
+              <article class="tl-card">
+                <div class="tl-top"><span class="tl-date">2022 — 2025</span></div>
+                <h3>Software Engineer</h3>
+                <div class="tl-company">
+                  <img src="assets/sunnova-logo.webp" alt="Sunnova Energy logo" width="36" height="36" loading="lazy" />
+                  <a href="https://www.sunnova.com" target="_blank" rel="noopener noreferrer">
+                    Sunnova Energy
+                    <svg class="icon" aria-hidden="true"><use href="#i-external" /></svg>
+                  </a>
+                </div>
+                <p>
+                  Built the React&nbsp;Native apps used by Sunnova&rsquo;s solar customers and
+                  dealer network, and the Node, Python and .NET services behind them.
+                </p>
+                <ul class="chips">
+                  <li><button class="chip" type="button" data-tech="react,react native" aria-pressed="false">React / React Native</button></li>
+                  <li><button class="chip" type="button" data-tech="typescript" aria-pressed="false">TypeScript</button></li>
+                  <li><button class="chip" type="button" data-tech="python" aria-pressed="false">Python</button></li>
+                  <li><button class="chip" type="button" data-tech="node.js" aria-pressed="false">Node.js</button></li>
+                  <li><button class="chip" type="button" data-tech=".net,c#" aria-pressed="false">.NET C#</button></li>
+                  <li><button class="chip" type="button" data-tech="aws" aria-pressed="false">AWS</button></li>
+                </ul>
+              </article>
+            </li>
+
+            <li class="tl-item reveal" data-reveal>
+              <div class="tl-marker" aria-hidden="true"></div>
+              <article class="tl-card">
+                <div class="tl-top"><span class="tl-date">2022</span></div>
+                <h3>Software Engineer Intern</h3>
+                <div class="tl-company">
+                  <img src="assets/potato-logo.webp" alt="Potato TV logo" width="36" height="36" loading="lazy" />
+                  <span>Potato TV</span>
+                </div>
+                <p>
+                  Built mobile experiences for the Potato&nbsp;TV iOS app, a product for sharing
+                  streaming sessions between friends.
+                </p>
+                <ul class="chips">
+                  <li><button class="chip" type="button" data-tech="swift" aria-pressed="false">Swift</button></li>
+                  <li><button class="chip" type="button" data-tech="ios" aria-pressed="false">iOS</button></li>
+                </ul>
+              </article>
+            </li>
+
+            <li class="tl-item tl-minor reveal" data-reveal>
+              <div class="tl-marker" aria-hidden="true"></div>
+              <div class="tl-note">
+                <svg class="icon" aria-hidden="true"><use href="#i-cap" /></svg>
+                <span>B.S. in Computer Science, Hunter College</span>
+                <span class="tl-date">2021</span>
+              </div>
+            </li>
+
+            <li class="tl-item reveal" data-reveal>
+              <div class="tl-marker" aria-hidden="true"></div>
+              <article class="tl-card">
+                <div class="tl-top"><span class="tl-date">2020 — 2021</span></div>
+                <h3>Teaching Assistant</h3>
+                <div class="tl-company">
+                  <img src="assets/hunter-logo.webp" alt="Hunter College logo" width="36" height="36" loading="lazy" />
+                  <a href="https://www.hunter.cuny.edu" target="_blank" rel="noopener noreferrer">
+                    Hunter College
+                    <svg class="icon" aria-hidden="true"><use href="#i-external" /></svg>
+                  </a>
+                </div>
+                <p>
+                  Tutored undergraduates in data structures, algorithms and introductory
+                  programming across two academic years.
+                </p>
+                <ul class="chips">
+                  <li><button class="chip" type="button" data-tech="python" aria-pressed="false">Python</button></li>
+                  <li><button class="chip" type="button" data-tech="c,c++" aria-pressed="false">C / C++</button></li>
+                </ul>
+              </article>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- ── Projects ───────────────────────────────────────── -->
+      <section id="projects" class="section">
+        <div class="container">
+          <header class="section-head reveal" data-reveal>
+            <span class="eyebrow">03 — Projects</span>
+            <h2>Things I&rsquo;ve built</h2>
+            <p>Side projects, shipped and in the wild.</p>
+          </header>
+
+          <div class="bento">
+            <article class="card card-featured reveal" data-reveal>
+              <div class="card-head">
+                <span class="card-icon"><svg class="icon" aria-hidden="true"><use href="#i-moon" /></svg></span>
+                <div class="card-links">
+                  <a href="https://apps.apple.com/in/app/muslims-app/id1660397990" target="_blank" rel="noopener noreferrer" aria-label="Muslims App on the App Store">
+                    <svg class="icon" aria-hidden="true"><use href="#i-apple" /></svg>
+                  </a>
+                  <a href="https://play.google.com/store/apps/details?id=com.deendev.muslimapp" target="_blank" rel="noopener noreferrer" aria-label="Muslims App on Google Play">
+                    <svg class="icon" aria-hidden="true"><use href="#i-play" /></svg>
+                  </a>
+                </div>
+              </div>
+              <div class="card-body">
+                <span class="tag-featured">Featured · 2023</span>
+                <h3>Muslims App</h3>
+                <p class="card-status"><span class="dot" aria-hidden="true"></span>Live on the App Store &amp; Google Play</p>
+                <p>
+                  A companion app for daily practice: location-based prayer times, a qibla
+                  compass and the full Qur&rsquo;an in over 90 languages. Offline-first, ad-free,
+                  and live on both the App Store and Google Play.
+                </p>
+                <ul class="card-highlights">
+                  <li>Prayer times and a qibla compass driven by device location</li>
+                  <li>The full Qur&rsquo;an in 90+ languages, readable with no connection</li>
+                  <li>One React&nbsp;Native codebase shipped to iOS and Android</li>
+                </ul>
+                <ul class="chips">
+                  <li><button class="chip" type="button" data-tech="react native" aria-pressed="false">React Native</button></li>
+                  <li><button class="chip" type="button" data-tech="typescript" aria-pressed="false">TypeScript</button></li>
+                  <li><button class="chip" type="button" data-tech="expo" aria-pressed="false">Expo</button></li>
+                  <li><button class="chip" type="button" data-tech="offline-first" aria-pressed="false">Offline-first</button></li>
+                  <li><button class="chip" type="button" data-tech="analytics" aria-pressed="false">Analytics</button></li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="card reveal" data-reveal data-reveal-delay="1">
+              <div class="card-head">
+                <span class="card-icon"><svg class="icon" aria-hidden="true"><use href="#i-film" /></svg></span>
+                <div class="card-links">
+                  <a href="https://github.com/noman-ahmad/MyMoviesApp" target="_blank" rel="noopener noreferrer" aria-label="Movies Watch List on GitHub">
+                    <svg class="icon" aria-hidden="true"><use href="#i-github" /></svg>
+                  </a>
+                </div>
+              </div>
+              <div class="card-body">
+                <span class="card-year">2021</span>
+                <h3>Movies Watch List</h3>
+                <p class="card-status"><span class="dot" aria-hidden="true"></span>Open source on GitHub</p>
+                <p>Search films, build a watchlist, and leave ratings and reviews — persisted locally with Core Data.</p>
+                <ul class="chips">
+                  <li><button class="chip" type="button" data-tech="swift" aria-pressed="false">Swift</button></li>
+                  <li><button class="chip" type="button" data-tech="swiftui" aria-pressed="false">SwiftUI</button></li>
+                  <li><button class="chip" type="button" data-tech="core data" aria-pressed="false">Core Data</button></li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="card reveal" data-reveal data-reveal-delay="2">
+              <div class="card-head">
+                <span class="card-icon"><svg class="icon" aria-hidden="true"><use href="#i-planet" /></svg></span>
+                <div class="card-links">
+                  <a href="https://github.com/noman-ahmad/MySpaceApp" target="_blank" rel="noopener noreferrer" aria-label="Space App on GitHub">
+                    <svg class="icon" aria-hidden="true"><use href="#i-github" /></svg>
+                  </a>
+                </div>
+              </div>
+              <div class="card-body">
+                <span class="card-year">2020</span>
+                <h3>Space App</h3>
+                <p class="card-status"><span class="dot" aria-hidden="true"></span>Open source on GitHub</p>
+                <p>Browse the solar system and beyond, with detailed profiles of planets, moons and other celestial bodies.</p>
+                <ul class="chips">
+                  <li><button class="chip" type="button" data-tech="swift" aria-pressed="false">Swift</button></li>
+                  <li><button class="chip" type="button" data-tech="swiftui" aria-pressed="false">SwiftUI</button></li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="card reveal" data-reveal data-reveal-delay="3">
+              <div class="card-head">
+                <span class="card-icon"><svg class="icon" aria-hidden="true"><use href="#i-ball" /></svg></span>
+                <div class="card-links">
+                  <a href="https://github.com/noman-ahmad/NBAStatsApp" target="_blank" rel="noopener noreferrer" aria-label="NBA Stats App on GitHub">
+                    <svg class="icon" aria-hidden="true"><use href="#i-github" /></svg>
+                  </a>
+                </div>
+              </div>
+              <div class="card-body">
+                <span class="card-year">2020</span>
+                <h3>NBA Stats</h3>
+                <p class="card-status"><span class="dot" aria-hidden="true"></span>Open source on GitHub</p>
+                <p>Live team and player statistics pulled from third-party sports APIs into a native iOS interface.</p>
+                <ul class="chips">
+                  <li><button class="chip" type="button" data-tech="swift" aria-pressed="false">Swift</button></li>
+                  <li><button class="chip" type="button" data-tech="uikit" aria-pressed="false">UIKit</button></li>
+                </ul>
+              </div>
+            </article>
+
+            <a
+              class="card card-cta reveal"
+              data-reveal
+              data-reveal-delay="4"
+              href="https://github.com/noman-ahmad?tab=repositories"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span class="card-icon"><svg class="icon" aria-hidden="true"><use href="#i-code" /></svg></span>
+              <div>
+                <h3>More on GitHub</h3>
+                <p>Experiments, older work and everything else I&rsquo;ve put in public.</p>
+              </div>
+              <svg class="icon card-cta-arrow" aria-hidden="true"><use href="#i-external" /></svg>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Contact ────────────────────────────────────────── -->
+      <section id="contact" class="section section-alt">
+        <div class="container">
+          <div class="contact-inner reveal" data-reveal>
+            <span class="eyebrow">04 — Contact</span>
+            <h2>Let&rsquo;s build something</h2>
+            <p>
+              I&rsquo;m open to senior engineering roles and interesting product work. The fastest
+              way to reach me is email — I read everything.
+            </p>
+            <div class="contact-actions">
+              <a
+                class="btn btn-primary"
+                href="mailto:nomanahmad.dev@gmail.com?subject=Opportunity%20for%20Noman"
+              >
+                <svg class="icon" aria-hidden="true"><use href="#i-mail" /></svg>
+                nomanahmad.dev@gmail.com
+              </a>
+              <button
+                type="button"
+                class="btn btn-ghost copy-btn"
+                data-copy="nomanahmad.dev@gmail.com"
+              >
+                <svg class="icon icon-copy" aria-hidden="true"><use href="#i-copy" /></svg>
+                <svg class="icon icon-done" aria-hidden="true"><use href="#i-check" /></svg>
+                <span class="copy-label">Copy address</span>
+              </button>
+              <a class="btn btn-ghost" href="assets/resume.pdf" download>
+                <svg class="icon" aria-hidden="true"><use href="#i-download" /></svg>
+                Résumé
+              </a>
+            </div>
+            <div class="socials socials-lg">
+              <a href="https://github.com/noman-ahmad" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                <svg class="icon" aria-hidden="true"><use href="#i-github" /></svg>
+              </a>
+              <a href="https://linkedin.com/in/noman-ahmad199916" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                <svg class="icon" aria-hidden="true"><use href="#i-linkedin" /></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="filter-bar" id="filter-bar" hidden>
+      <p role="status" aria-live="polite">
+        <span class="filter-count" id="filter-count"></span>
+      </p>
+      <button type="button" class="filter-clear" id="filter-clear">
+        Clear
+        <svg class="icon" aria-hidden="true"><use href="#i-close" /></svg>
+      </button>
+    </div>
+
+    <button type="button" class="to-top" id="to-top" aria-label="Back to top">
+      <svg class="icon" aria-hidden="true"><use href="#i-arrow-up" /></svg>
+    </button>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <span>&copy; <span id="year">2026</span> Noman Ahmad</span>
+        <span class="footer-note">Built from scratch — no framework, no build step.</span>
       </div>
-    </section>
+    </footer>
 
-    <section id="projects" data-section-title="Projects">
-      <div class="projects-container">
-        <div class="section-header">
-          <h1 class="section-title">Projects</h1>
-          <div class="section-subtitle">
-            Crafting solutions with modern technologies
-          </div>
-          <div class="section-decoration">
-            <div class="decoration-line"></div>
-            <div class="decoration-dot"></div>
-            <div class="decoration-line"></div>
-          </div>
-        </div>
+    <script src="scripts.js" defer></script>
 
-        <div class="bento-grid">
-          <!-- Featured Project - Muslims App -->
-          <div class="bento-card featured">
-            <span class="project-badge">Featured</span>
-            <div class="bento-card-header">
-              <div class="project-icon">
-                <i class="fa-solid fa-moon"></i>
-              </div>
-              <div class="project-links">
-                <a
-                  href="https://apps.apple.com/in/app/muslims-app/id1660397990"
-                  target="_blank"
-                  class="project-link"
-                  aria-label="App Store"
-                >
-                  <i class="fab fa-app-store-ios"></i>
-                </a>
-                <a
-                  href="https://play.google.com/store/apps/details?id=com.deendev.muslimapp"
-                  target="_blank"
-                  class="project-link"
-                  aria-label="Play Store"
-                >
-                  <i class="fab fa-google-play"></i>
-                </a>
-              </div>
-            </div>
-            <div class="bento-card-content">
-              <span class="project-year">2023</span>
-              <h3 class="project-title">Muslims App</h3>
-              <p class="project-description">
-                A comprehensive companion app for all Muslims. Includes location
-                based prayer times, compass for direction of prayer, The Holy
-                Qur'an in over 90 languages and much more. Features an
-                offline-first design and ad-free experience.
-              </p>
-              <div class="project-tech">
-                <span class="tech-tag">React Native</span>
-                <span class="tech-tag">TypeScript</span>
-                <span class="tech-tag">Expo</span>
-                <span class="tech-tag">Google Analytics</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Movies Watch List App -->
-          <div class="bento-card">
-            <div class="bento-card-header">
-              <div class="project-icon">
-                <i class="fa-solid fa-film"></i>
-              </div>
-              <div class="project-links">
-                <a
-                  href="https://github.com/noman-ahmad/MyMoviesApp"
-                  target="_blank"
-                  class="project-link"
-                  aria-label="GitHub"
-                >
-                  <i class="fab fa-github"></i>
-                </a>
-              </div>
-            </div>
-            <div class="bento-card-content">
-              <span class="project-year">2021</span>
-              <h3 class="project-title">Movies Watch List</h3>
-              <p class="project-description">
-                Search for movies and track your watchlist. Add movies, mark as watched, and provide ratings/reviews with Core Data storage.
-              </p>
-              <div class="project-tech">
-                <span class="tech-tag">Swift</span>
-                <span class="tech-tag">SwiftUI</span>
-                <span class="tech-tag">Core Data</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Space App -->
-          <div class="bento-card">
-            <div class="bento-card-header">
-              <div class="project-icon">
-                <i class="fa-solid fa-shuttle-space"></i>
-              </div>
-              <div class="project-links">
-                <a
-                  href="https://github.com/noman-ahmad/MySpaceApp"
-                  target="_blank"
-                  class="project-link"
-                  aria-label="GitHub"
-                >
-                  <i class="fab fa-github"></i>
-                </a>
-              </div>
-            </div>
-            <div class="bento-card-content">
-              <span class="project-year">2020</span>
-              <h3 class="project-title">Space App</h3>
-              <p class="project-description">
-                Explore the solar system and beyond. Get detailed information about planets, moons, and celestial bodies.
-              </p>
-              <div class="project-tech">
-                <span class="tech-tag">Swift</span>
-                <span class="tech-tag">SwiftUI</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- NBA Stats App -->
-          <div class="bento-card">
-            <div class="bento-card-header">
-              <div class="project-icon">
-                <i class="fa-solid fa-basketball"></i>
-              </div>
-              <div class="project-links">
-                <a
-                  href="https://github.com/noman-ahmad/NBAStatsApp"
-                  target="_blank"
-                  class="project-link"
-                  aria-label="GitHub"
-                >
-                  <i class="fab fa-github"></i>
-                </a>
-              </div>
-            </div>
-            <div class="bento-card-content">
-              <span class="project-year">2020</span>
-              <h3 class="project-title">NBA Stats App</h3>
-              <p class="project-description">
-                Real-time NBA stats and data about teams and players using third-party APIs.
-              </p>
-              <div class="project-tech">
-                <span class="tech-tag">Swift</span>
-                <span class="tech-tag">UIKit</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Skills Card -->
-          <div class="bento-card skills">
-            <h3 class="skills-title">Tech Stack</h3>
-            <div class="tech-icons-grid">
-              <div class="tech-icon-item" data-tooltip="React">
-                <i class="fab fa-react"></i>
-              </div>
-              <div class="tech-icon-item" data-tooltip="Node.js">
-                <i class="fab fa-node-js"></i>
-              </div>
-              <div class="tech-icon-item" data-tooltip="Python">
-                <i class="fab fa-python"></i>
-              </div>
-              <div class="tech-icon-item" data-tooltip="AWS">
-                <i class="fab fa-aws"></i>
-              </div>
-              <div class="tech-icon-item" data-tooltip="Docker">
-                <i class="fab fa-docker"></i>
-              </div>
-              <div class="tech-icon-item" data-tooltip="Git">
-                <i class="fab fa-git-alt"></i>
-              </div>
-              <div class="tech-icon-item" data-tooltip="JavaScript">
-                <i class="fab fa-js"></i>
-              </div>
-              <div class="tech-icon-item" data-tooltip="Swift">
-                <i class="fab fa-swift"></i>
-              </div>
-              <div class="tech-icon-item" data-tooltip="PostgreSQL">
-                <i class="fas fa-database"></i>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <script src="scripts.js"></script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Noman Ahmad",
+        "url": "https://noman-ahmad.github.io/",
+        "image": "https://noman-ahmad.github.io/assets/og-image.jpg",
+        "jobTitle": "Senior Mobile Engineer",
+        "email": "mailto:nomanahmad.dev@gmail.com",
+        "worksFor": { "@type": "Organization", "name": "Club" },
+        "alumniOf": { "@type": "CollegeOrUniversity", "name": "Hunter College" },
+        "address": { "@type": "PostalAddress", "addressLocality": "New York", "addressRegion": "NY" },
+        "knowsAbout": ["React Native", "TypeScript", "Swift", "SwiftUI", "iOS", "Python", "C#", ".NET", "AWS", "Node.js"],
+        "sameAs": [
+          "https://github.com/noman-ahmad",
+          "https://linkedin.com/in/noman-ahmad199916"
+        ]
+      }
+    </script>
   </body>
 </html>

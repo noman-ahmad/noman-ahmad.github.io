@@ -1,0 +1,14 @@
+{
+  "name": "Noman Ahmad — Senior Mobile Engineer",
+  "short_name": "Noman Ahmad",
+  "description": "Portfolio of Noman Ahmad, senior mobile engineer.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#09090e",
+  "theme_color": "#5b3df5",
+  "icons": [
+    { "src": "/assets/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/assets/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/assets/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

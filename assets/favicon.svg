@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="N">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#7c5cff"/>
+      <stop offset="100%" stop-color="#4b2ce0"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="15" fill="url(#g)"/>
+  <!-- Drawn as a path, not <text>: favicons never load webfonts, so a text
+       node would fall back to whatever the OS happens to have. -->
+  <path fill="#fff" d="M15 50V14h11l12 19V14h11v36H38L26 31v19z"/>
+</svg>
