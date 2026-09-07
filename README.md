@@ -9,6 +9,7 @@ Deployed with GitHub Pages straight from the default branch.
 
 ```
 index.html      markup, meta/OG tags, JSON-LD, and the inline SVG icon sprite
+scripts/        build helpers: résumé rasteriser, social-card renderer + template
 styles.css      all styling; design tokens at the top, sections numbered 1-11
 scripts.js      theme, menu, scroll effects, reveals, typing, filtering
 404.html        styled not-found page (GitHub Pages serves this automatically)
@@ -152,10 +153,19 @@ Sizes produced: `favicon-16/32/48.png`, `apple-touch-icon.png` (180, **must be
 PNG** — iOS silently ignores WebP), `icon-192.png`, `icon-512.png`, plus a
 multi-size `favicon.ico` at the root containing the 16/32/48 PNGs.
 
-`assets/og-image.jpg` (1200×630) is the link preview. It is **rendered from an
-HTML template** rather than composed by hand, so it uses the real fonts and the
-site's own palette. Rendering at 2× and downsampling keeps the text crisp. If you
-change your title or employer, re-render it — the card has that text baked in.
+`assets/og-image.jpg` (1200×630) is the link preview, **rendered from
+`scripts/og-card.html`** rather than composed by hand, so it uses the real fonts
+and the site's own palette:
+
+```sh
+node scripts/render-og-card.js scripts/og-card.html /tmp/og2x.png
+ffmpeg -y -i /tmp/og2x.png -vf "scale=1200:630:flags=lanczos" /tmp/og1x.png
+sips -s format jpeg -s formatOptions 74 /tmp/og1x.png --out assets/og-image.jpg
+```
+
+Rendering at 2× and downsampling keeps the text crisp. **The title, figures and
+tags are baked into the pixels** — edit `og-card.html` and re-render whenever
+they change on the site, then clear the caches (see below).
 
 ## Résumé viewer
 
@@ -184,6 +194,15 @@ cwebp -near_lossless 60 -m 6 assets/resume-p1.png -o assets/resume-p1.webp
 
 If the page count changes, update the `<img>` list and the "2 pages" label in
 the `#resume-viewer` markup.
+
+### Refreshing a cached link preview
+
+Platforms cache the preview per URL and will keep serving the old one:
+
+- **LinkedIn** — [Post Inspector](https://www.linkedin.com/post-inspector/), then
+  remove and re-add any Featured entry, which stores its own snapshot.
+- **Facebook / WhatsApp** — [Sharing Debugger](https://developers.facebook.com/tools/debug/) → Scrape Again.
+- **X, Slack, Discord** — re-fetch on their own within ~30 minutes.
 
 ## Notes
 

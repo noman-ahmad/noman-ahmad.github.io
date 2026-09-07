@@ -1,0 +1,75 @@
+<!DOCTYPE html><html><head><meta charset="utf-8" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1200px; height:630px; overflow:hidden;
+         font-family:"Inter",system-ui,sans-serif; background:#09090e; color:#f2f2f6; }
+  .card { position:relative; width:1200px; height:630px; padding:64px 68px;
+          display:flex; align-items:center; gap:56px; overflow:hidden; }
+  .glow { position:absolute; border-radius:50%; }
+  .g1 { width:760px; height:760px; top:-260px; right:-160px;
+        background:radial-gradient(circle,rgba(120,90,255,.40),transparent 66%); }
+  .g2 { width:600px; height:600px; bottom:-280px; left:-140px;
+        background:radial-gradient(circle,rgba(34,211,238,.26),transparent 68%); }
+  .g3 { width:520px; height:520px; top:180px; left:420px;
+        background:radial-gradient(circle,rgba(217,70,239,.20),transparent 70%); }
+  .grid { position:absolute; inset:0;
+          background-image:radial-gradient(circle at 1px 1px,#353545 1px,transparent 0);
+          background-size:34px 34px; opacity:.45;
+          -webkit-mask-image:radial-gradient(ellipse 85% 70% at 40% 40%,#000 20%,transparent 78%); }
+  .body { position:relative; flex:1; min-width:0; }
+
+  .brandrow { display:flex; align-items:center; gap:14px; margin-bottom:30px; }
+  .mark { width:46px; height:46px; border-radius:13px;
+          background:linear-gradient(135deg,#7c5cff,#4b2ce0); display:flex;
+          align-items:center; justify-content:center; box-shadow:0 8px 22px -6px rgba(120,90,255,.6); }
+  .mark svg { width:26px; height:26px; }
+  .url { font-family:"JetBrains Mono",monospace; font-size:19px; color:#9a9aae; }
+
+  h1 { font-size:78px; font-weight:800; letter-spacing:-.045em; line-height:1; }
+  .role { margin-top:14px; font-size:32px; font-weight:600; letter-spacing:-.02em;
+          background:linear-gradient(100deg,#9b87ff,#4fd1e5);
+          -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; }
+  .facts { display:flex; gap:26px; margin-top:26px; }
+  .fact b { display:block; font-size:27px; font-weight:800; letter-spacing:-.03em; color:#f2f2f6; }
+  .fact span { font-size:14px; color:#9a9aae; }
+  .tags { display:flex; gap:9px; margin-top:28px; flex-wrap:wrap; }
+  .tag { font-family:"JetBrains Mono",monospace; font-size:15px; color:#cfcfe0;
+         padding:7px 14px; border-radius:999px;
+         border:1px solid rgba(155,135,255,.34); background:rgba(155,135,255,.11); }
+
+  .photo { position:relative; flex:none; width:330px; height:330px; border-radius:34px;
+           padding:6px; background:linear-gradient(150deg,#9b87ff,rgba(155,135,255,.18) 58%,rgba(155,135,255,.06));
+           box-shadow:0 34px 70px -22px rgba(0,0,0,.85); }
+  .photo img { width:100%; height:100%; object-fit:cover; border-radius:29px; display:block; }
+</style></head>
+<body>
+  <div class="card">
+    <div class="glow g1"></div><div class="glow g2"></div><div class="glow g3"></div>
+    <div class="grid"></div>
+    <div class="body">
+      <div class="brandrow">
+        <span class="mark">
+          <svg viewBox="0 0 64 64"><path fill="#fff" d="M15 50V14h11l12 19V14h11v36H38L26 31v19z"/></svg>
+        </span>
+        <span class="url">noman-ahmad.github.io</span>
+      </div>
+      <h1>Noman Ahmad</h1>
+      <div class="role">Senior Mobile Software Engineer</div>
+      <div class="facts">
+        <div class="fact"><b>4+</b><span>Years shipping mobile</span></div>
+        <div class="fact"><b>400K+</b><span>Users served</span></div>
+        <div class="fact"><b>4.8</b><span>App Store rating</span></div>
+      </div>
+      <div class="tags">
+        <span class="tag">React Native</span>
+        <span class="tag">Swift</span>
+        <span class="tag">SwiftUI</span>
+        <span class="tag">TypeScript</span>
+      </div>
+    </div>
+    <div class="photo"><img src="../assets/profile.webp" alt="" /></div>
+  </div>
+</body></html>
