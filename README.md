@@ -47,14 +47,21 @@ columns and two rows, `.card-cta` spans two columns.
 
 **Adding a role** — copy an `<li class="tl-item">` into `.timeline`. Entries are
 listed newest first. `is-current` on the item gives it the accent marker,
-tinted card and "Current" badge; remove it from the old role first.
+tinted card and "Current" badge; remove it from the old role first. Optional
+parts: `.tl-sub` for a promotion/sub-title line, `.tl-points` for achievement
+bullets (wrap figures in `<strong>`), and `.tl-store` for an App Store badge.
+
+**Keep the site and `assets/resume.pdf` in sync.** The timeline bullets, the
+stats band and the toolkit all mirror the résumé. When the résumé changes,
+update those and re-render the viewer images.
 
 **Rotating roles** in the hero come from the `roles` array in `scripts.js`.
 
 **Stats band** — the four figures under the hero are `.stat` blocks; `data-count`
-is the number counted up to and `data-suffix` is appended (e.g. `+`). The text
-content is the fallback shown without JS or under reduced motion, so keep it in
-sync with `data-count` + `data-suffix`.
+is the number counted up to, `data-suffix` is appended (e.g. `+`, `K+`) and
+`data-decimals` keeps decimal places (e.g. `4.8`). The text content is the
+fallback shown without JS or under reduced motion, so keep it in sync with
+`data-count` + `data-suffix`.
 
 **Hero backdrop** is three drifting `.aurora` gradients plus a `.hero-grid` dot
 layer and a `.hero-spot` cursor spotlight. The spotlight and the photo tilt are

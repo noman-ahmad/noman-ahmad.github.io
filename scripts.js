@@ -246,9 +246,9 @@
 
   var typed = document.querySelector("[data-typed]");
   var roles = [
-    "Senior Mobile Engineer",
+    "Senior Mobile Software Engineer",
     "React Native Developer",
-    "iOS & SwiftUI Developer",
+    "Swift & SwiftUI Developer",
     "Full-Stack Engineer",
   ];
 
@@ -342,8 +342,9 @@
   var stats = document.querySelectorAll(".stat-num[data-count]");
 
   function countUp(el) {
-    var target = parseInt(el.getAttribute("data-count"), 10);
+    var target = parseFloat(el.getAttribute("data-count"));
     var suffix = el.getAttribute("data-suffix") || "";
+    var decimals = parseInt(el.getAttribute("data-decimals"), 10) || 0;
     var duration = 1100;
     var start = null;
 
@@ -352,7 +353,8 @@
       var t = Math.min(1, (now - start) / duration);
       // easeOutCubic, so it decelerates into the final figure
       var eased = 1 - Math.pow(1 - t, 3);
-      el.textContent = Math.round(target * eased) + suffix;
+      var v = target * eased;
+      el.textContent = (decimals ? v.toFixed(decimals) : Math.round(v)) + suffix;
       if (t < 1) requestAnimationFrame(step);
     };
 
