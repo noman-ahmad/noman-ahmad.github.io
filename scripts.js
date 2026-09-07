@@ -379,6 +379,8 @@
 
   /* --- Filter by technology ---------------------------------------------- */
 
+  var viewer = document.getElementById("resume-viewer");
+
   var chips = Array.prototype.slice.call(document.querySelectorAll(".chip[data-tech]"));
   var filterables = Array.prototype.slice.call(
     document.querySelectorAll(".tl-item, .bento .card")
@@ -478,7 +480,9 @@
   }
 
   document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape" && activeTech) applyFilter(null);
+    // While the résumé dialog is open Escape belongs to it, not the filter.
+    var dialogOpen = viewer && !viewer.hidden;
+    if (e.key === "Escape" && activeTech && !dialogOpen) applyFilter(null);
   });
 
   /* --- Copy to clipboard -------------------------------------------------- */
@@ -509,6 +513,95 @@
       }
     });
   });
+
+  /* --- Résumé viewer ------------------------------------------------------ */
+
+  var resumePages = document.getElementById("resume-pages");
+  var resumeTriggers = document.querySelectorAll("[data-resume]");
+  var lastFocused = null;
+  var pagesLoaded = false;
+
+  function loadResumePages() {
+    if (pagesLoaded || !resumePages) return;
+    pagesLoaded = true;
+    resumePages.querySelectorAll("img[data-src]").forEach(function (img) {
+      img.src = img.getAttribute("data-src");
+      img.removeAttribute("data-src");
+    });
+  }
+
+  function focusables() {
+    return Array.prototype.slice
+      .call(viewer.querySelectorAll('a[href], button:not([disabled]), [tabindex="0"]'))
+      .filter(function (el) {
+        return el.offsetParent !== null;
+      });
+  }
+
+  function openResume() {
+    if (!viewer) return;
+    lastFocused = document.activeElement;
+    loadResumePages();
+    viewer.hidden = false;
+    document.body.classList.add("viewer-open");
+    requestAnimationFrame(function () {
+      viewer.classList.add("is-open");
+      var first = focusables()[0];
+      if (first) first.focus();
+    });
+  }
+
+  function closeResume() {
+    if (!viewer || viewer.hidden) return;
+    viewer.classList.remove("is-open");
+    document.body.classList.remove("viewer-open");
+    var finish = function () {
+      if (!viewer.classList.contains("is-open")) viewer.hidden = true;
+    };
+    if (reduceMotion) finish();
+    else window.setTimeout(finish, 280);
+    if (lastFocused && lastFocused.focus) lastFocused.focus();
+  }
+
+  if (viewer) {
+    resumeTriggers.forEach(function (link) {
+      link.addEventListener("click", function (e) {
+        // Modifier-clicks and middle-clicks should still open the PDF itself.
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+        e.preventDefault();
+        openResume();
+      });
+    });
+
+    viewer.addEventListener("click", function (e) {
+      if (e.target.closest("[data-resume-close]")) closeResume();
+    });
+
+    document.addEventListener("keydown", function (e) {
+      if (viewer.hidden) return;
+
+      if (e.key === "Escape") {
+        e.stopPropagation();
+        closeResume();
+        return;
+      }
+
+      // Keep tabbing inside the dialog while it is open.
+      if (e.key === "Tab") {
+        var items = focusables();
+        if (!items.length) return;
+        var first = items[0];
+        var last = items[items.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    });
+  }
 
   /* --- Footer year ------------------------------------------------------- */
 

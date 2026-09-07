@@ -150,6 +150,34 @@ HTML template** rather than composed by hand, so it uses the real fonts and the
 site's own palette. Rendering at 2× and downsampling keeps the text crisp. If you
 change your title or employer, re-render it — the card has that text baked in.
 
+## Résumé viewer
+
+`assets/resume.pdf` is the real document — the download and "Open" actions both
+point at it. The in-page viewer shows **pre-rendered page images**
+(`assets/resume-p{n}.webp`), which load only when the dialog is first opened.
+
+That approach was chosen over an `<iframe>` (mobile browsers refuse to render
+PDFs inline) and over shipping PDF.js (~1.4 MB for a two-page document).
+
+**Regenerate the images whenever resume.pdf changes** — the viewer will
+otherwise show the old one while the download serves the new one:
+
+```sh
+node scripts/render-resume.js
+```
+
+That script loads PDF.js in headless Chromium, renders each page to a canvas at
+scale 2.6 (~1590px wide) and writes a PNG per page. Encode them with
+**near-lossless** WebP — for crisp text on white, lossless beats lossy by a wide
+margin (145 KB vs 271 KB for page 1):
+
+```sh
+cwebp -near_lossless 60 -m 6 assets/resume-p1.png -o assets/resume-p1.webp
+```
+
+If the page count changes, update the `<img>` list and the "2 pages" label in
+the `#resume-viewer` markup.
+
 ## Notes
 
 - Theme is applied by a small inline script in `<head>` before first paint, so

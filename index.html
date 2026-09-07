@@ -136,6 +136,10 @@
           <circle cx="12" cy="12" r="9" />
           <path d="M12 3v18M3 12h18M5.2 5.2c3.6 3.6 3.6 10 0 13.6M18.8 5.2c-3.6 3.6-3.6 10 0 13.6" />
         </symbol>
+        <symbol id="i-doc" viewBox="0 0 24 24">
+          <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8Z" />
+          <path d="M14 3v5h5M9 13h6M9 17h4" />
+        </symbol>
         <symbol id="i-filter" viewBox="0 0 24 24">
           <path d="M3 5h18l-7 8v6l-4 2v-8Z" />
         </symbol>
@@ -209,9 +213,9 @@
         <a href="#projects"><span>03</span> Projects</a>
         <a href="#contact"><span>04</span> Contact</a>
       </nav>
-      <a class="btn btn-primary" href="assets/resume.pdf" download>
-        <svg class="icon" aria-hidden="true"><use href="#i-download" /></svg>
-        Download résumé
+      <a class="btn btn-primary" href="assets/resume.pdf" data-resume>
+        <svg class="icon" aria-hidden="true"><use href="#i-doc" /></svg>
+        View résumé
       </a>
     </div>
 
@@ -244,9 +248,9 @@
                 View my work
                 <svg class="icon" aria-hidden="true"><use href="#i-arrow-right" /></svg>
               </a>
-              <a class="btn btn-ghost" href="assets/resume.pdf" download>
-                <svg class="icon" aria-hidden="true"><use href="#i-download" /></svg>
-                Résumé
+              <a class="btn btn-ghost" href="assets/resume.pdf" data-resume>
+                <svg class="icon" aria-hidden="true"><use href="#i-doc" /></svg>
+                View résumé
               </a>
             </div>
 
@@ -736,9 +740,9 @@
                 <svg class="icon icon-done" aria-hidden="true"><use href="#i-check" /></svg>
                 <span class="copy-label">Copy address</span>
               </button>
-              <a class="btn btn-ghost" href="assets/resume.pdf" download>
-                <svg class="icon" aria-hidden="true"><use href="#i-download" /></svg>
-                Résumé
+              <a class="btn btn-ghost" href="assets/resume.pdf" data-resume>
+                <svg class="icon" aria-hidden="true"><use href="#i-doc" /></svg>
+                View résumé
               </a>
             </div>
             <div class="socials socials-lg">
@@ -753,6 +757,49 @@
         </div>
       </section>
     </main>
+
+    <div
+      class="resume-viewer"
+      id="resume-viewer"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="resume-title"
+      hidden
+    >
+      <div class="resume-backdrop" data-resume-close></div>
+      <div class="resume-panel">
+        <header class="resume-bar">
+          <h2 id="resume-title">
+            <svg class="icon" aria-hidden="true"><use href="#i-doc" /></svg>
+            Résumé
+            <span class="resume-meta">Noman Ahmad &middot; 2 pages</span>
+          </h2>
+          <div class="resume-actions">
+            <a class="btn btn-primary btn-sm" href="assets/resume.pdf" download="Noman-Ahmad-Resume.pdf">
+              <svg class="icon" aria-hidden="true"><use href="#i-download" /></svg>
+              <span>Download PDF</span>
+            </a>
+            <a
+              class="btn btn-ghost btn-sm"
+              href="assets/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg class="icon" aria-hidden="true"><use href="#i-external" /></svg>
+              <span>Open</span>
+            </a>
+            <button type="button" class="icon-btn" data-resume-close aria-label="Close résumé">
+              <svg class="icon" aria-hidden="true"><use href="#i-close" /></svg>
+            </button>
+          </div>
+        </header>
+        <div class="resume-pages" id="resume-pages" tabindex="0">
+          <!-- src is set on first open so nothing loads until it is needed -->
+          <img data-src="assets/resume-p1.webp" alt="Résumé, page 1" width="1591" height="2059" />
+          <img data-src="assets/resume-p2.webp" alt="Résumé, page 2" width="1591" height="2059" />
+        </div>
+      </div>
+    </div>
 
     <div class="filter-bar" id="filter-bar" hidden>
       <p role="status" aria-live="polite">
