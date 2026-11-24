@@ -172,6 +172,14 @@ cwebp -near_lossless 60 -m 6 assets/resume-p1.png -o assets/resume-p1.webp
 If the page count changes, update the `<img>` list and the "2 pages" label in
 the `#resume-viewer` markup.
 
+### Cache busting for CSS and JS
+
+`index.html` and `404.html` load `styles.css` and `scripts.js` with a `?v=YYYYMMDD`
+query. GitHub Pages serves both files without content hashes, and browsers
+(Safari in particular) keep a cached copy past a deploy, which pairs new markup
+with old styles. **Bump the `v` value in both HTML files whenever `styles.css`
+or `scripts.js` changes.**
+
 ### Refreshing a cached link preview
 
 Platforms cache the preview per URL and will keep serving the old one:
