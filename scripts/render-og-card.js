@@ -1,5 +1,5 @@
 const { chromium } = require('playwright-core');
-const EXE = '/Users/nomanahmad/Library/Caches/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-mac-arm64/chrome-headless-shell';
+const EXE = '/Users/nomanahmad/Library/Caches/ms-playwright/chromium_headless_shell-1193/chrome-mac/headless_shell';
 (async () => {
   const b = await chromium.launch({ executablePath: EXE });
   const p = await (await b.newContext({ viewport:{width:1200,height:630}, deviceScaleFactor:2 })).newPage();
