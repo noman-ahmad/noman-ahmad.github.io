@@ -1026,7 +1026,7 @@ p {
    empty space, so it never covers code. */
 .hero-badge {
   position: absolute;
-  right: -28px;
+  right: -20px;
   bottom: -22px;
   display: flex;
   align-items: center;
