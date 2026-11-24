@@ -1,6 +1,6 @@
 const { chromium } = require('playwright-core') // npm i playwright-core;
 const fs = require('fs');
-const EXE = '/Users/nomanahmad/Library/Caches/ms-playwright/chromium_headless_shell-1217/chrome-headless-shell-mac-arm64/chrome-headless-shell';
+const EXE = '/Users/nomanahmad/Library/Caches/ms-playwright/chromium_headless_shell-1193/chrome-mac/headless_shell';
 const ROOT = '/Users/nomanahmad/Desktop/noman-ahmad.github.io';
 const SCALE = 2.6; // ~1590px wide for US Letter; displayed at ~900 CSS px
 

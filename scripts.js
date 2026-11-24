@@ -279,10 +279,10 @@
     window.setTimeout(tick, 2200);
   }
 
-  /* --- Hero spotlight & photo tilt --------------------------------------- */
+  /* --- Hero spotlight & card tilt ---------------------------------------- */
 
   var hero = document.querySelector(".hero");
-  var heroPhoto = document.querySelector(".hero-photo");
+  var heroCard = document.querySelector(".hero-card");
   var finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 
   if (hero && finePointer && !reduceMotion) {
@@ -297,18 +297,18 @@
       hero.style.setProperty("--mx", ((e.clientX - hr.left) / hr.width) * 100 + "%");
       hero.style.setProperty("--my", ((e.clientY - hr.top) / hr.height) * 100 + "%");
 
-      if (heroPhoto) {
-        var pr = heroPhoto.getBoundingClientRect();
-        // Only tilt while the pointer is near the photo, so the card is not
+      if (heroCard) {
+        var pr = heroCard.getBoundingClientRect();
+        // Only tilt while the pointer is near the card, so it is not
         // permanently skewed towards a cursor parked across the page.
         var dx = (e.clientX - (pr.left + pr.width / 2)) / (pr.width / 2);
         var dy = (e.clientY - (pr.top + pr.height / 2)) / (pr.height / 2);
         var near = Math.abs(dx) < 2.2 && Math.abs(dy) < 2.2;
 
-        heroPhoto.classList.toggle("is-tilting", near);
+        heroCard.classList.toggle("is-tilting", near);
         var max = 7;
-        heroPhoto.style.setProperty("--tx", (near ? clamp(dx, -1, 1) * max : 0) + "deg");
-        heroPhoto.style.setProperty("--ty", (near ? clamp(-dy, -1, 1) * max : 0) + "deg");
+        heroCard.style.setProperty("--tx", (near ? clamp(dx, -1, 1) * max : 0) + "deg");
+        heroCard.style.setProperty("--ty", (near ? clamp(-dy, -1, 1) * max : 0) + "deg");
       }
     };
 
@@ -325,10 +325,10 @@
 
     hero.addEventListener("pointerleave", function () {
       hero.classList.remove("is-lit");
-      if (heroPhoto) {
-        heroPhoto.classList.remove("is-tilting");
-        heroPhoto.style.setProperty("--tx", "0deg");
-        heroPhoto.style.setProperty("--ty", "0deg");
+      if (heroCard) {
+        heroCard.classList.remove("is-tilting");
+        heroCard.style.setProperty("--tx", "0deg");
+        heroCard.style.setProperty("--ty", "0deg");
       }
     });
   }

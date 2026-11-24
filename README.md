@@ -65,44 +65,21 @@ fallback shown without JS or under reduced motion, so keep it in sync with
 `data-count` + `data-suffix`.
 
 **Hero backdrop** is three drifting `.aurora` gradients plus a `.hero-grid` dot
-layer and a `.hero-spot` cursor spotlight. The spotlight and the photo tilt are
+layer and a `.hero-spot` cursor spotlight. The spotlight and the code card tilt are
 driven by `--mx`/`--my` and `--tx`/`--ty` custom properties written from
 `scripts.js`, and are disabled for touch devices and reduced motion.
 
 ## Images
 
-Photos are served as WebP with a JPEG fallback for the hero. To replace the
-portrait, find the face centre (x) and eye line (y) in the source, then crop
-square so the face is horizontally centred with the eyes ~40% down:
-
-```sh
-SRC=assets/new-photo.jpg
-# S = crop size; left = faceX - S/2; top = eyesY - 0.40*S
-CROP="crop=1760:1760:625:1261"
-
-ffmpeg -y -i $SRC -vf "$CROP,scale=720:720:flags=lanczos" -frames:v 1 /tmp/p.png
-ffmpeg -y -i $SRC -vf "$CROP,scale=160:160:flags=lanczos" -frames:v 1 /tmp/p160.png
-cwebp -q 70 -m 6 /tmp/p.png    -o assets/profile.webp
-cwebp -q 78 -m 6 /tmp/p160.png -o assets/profile-sm.webp
-sips -s format jpeg -s formatOptions 62 /tmp/p.png --out assets/profile.jpg
-```
-
-To find those coordinates, render the source with a grid overlay
-(`-vf "scale=800:600,drawgrid=w=80:h=60:t=1:c=red"`), read the face position off
-it, then verify by re-cropping with centre guides before committing.
-
-Quality is deliberately ~70 rather than ~85: the photo has a highly detailed
-background that compresses badly, and the two are visually identical at the
-360px the image is actually displayed at.
-
-`assets/og-image.jpg` is the social preview card and must stay 1200×630 — crop a
-landscape band around the same face centre:
-
-```sh
-ffmpeg -y -i $SRC -vf "crop=2600:1365:205:1392,scale=1200:630:flags=lanczos" \
-  -frames:v 1 /tmp/og.png
-sips -s format jpeg -s formatOptions 60 /tmp/og.png --out assets/og-image.jpg
-```
+**Hero code card** — the hero shows an `Engineer.swift` editor window
+(`.hero-card` > `.code-card`) instead of a photo. The snippet is hand-highlighted
+with `tok-*` spans whose colours are the `--code-*` tokens in both theme blocks
+of `styles.css`; keep any new colour at 4.5:1 or better against `--surface`
+and `--surface-2`. The font size is derived from the card width for a 46-character
+longest line, so if you lengthen a line, raise the `28.6` divisor in
+`.code-card-body` to match (characters × 0.6 + a little slack). The same snippet
+is duplicated in `scripts/og-card.html`; change both together and re-render the
+link preview (see "Icons and the link preview" below).
 
 Wide wordmark logos (Club) use `class="logo-wide"` on the `<img>` so they keep
 their aspect ratio instead of being cropped into the square tile the other

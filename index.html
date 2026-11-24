@@ -277,21 +277,27 @@
             </div>
           </div>
 
-          <div class="hero-photo reveal" data-reveal data-reveal-delay="3">
-            <div class="photo-frame">
-              <picture>
-                <source srcset="assets/profile.webp" type="image/webp" />
-                <img
-                  src="assets/profile.jpg"
-                  alt="Portrait of Noman Ahmad"
-                  width="720"
-                  height="720"
-                  fetchpriority="high"
-                  decoding="async"
-                />
-              </picture>
-            </div>
-            <div class="photo-badge">
+          <div class="hero-card reveal" data-reveal data-reveal-delay="3">
+            <figure class="code-card" aria-label="Swift code snippet describing Noman Ahmad">
+              <div class="code-card-window">
+                <div class="code-card-bar" aria-hidden="true">
+                  <span class="code-card-dots"><span></span><span></span><span></span></span>
+                  <span class="code-card-file">Engineer.swift</span>
+                </div>
+<pre class="code-card-body"><code><span class="tok-kw">struct</span> <span class="tok-type">Engineer</span> {
+    <span class="tok-kw">let</span> name = <span class="tok-str">"Noman Ahmad"</span>
+    <span class="tok-kw">let</span> role = <span class="tok-str">"Senior Mobile Engineer"</span>
+    <span class="tok-kw">let</span> stack = [<span class="tok-str">"Swift"</span>, <span class="tok-str">"SwiftUI"</span>,
+                 <span class="tok-str">"React Native"</span>, <span class="tok-str">"TypeScript"</span>]
+    <span class="tok-kw">let</span> usersServed = <span class="tok-num">400_000</span>
+
+    <span class="tok-kw">func</span> <span class="tok-fn">ship</span>() -&gt; <span class="tok-type">App</span> {
+        <span class="tok-type">App</span>(platforms: [.<span class="tok-member">iOS</span>, .<span class="tok-member">android</span>])
+    }
+}</code></pre>
+              </div>
+            </figure>
+            <div class="hero-badge">
               <img
                 class="logo-bleed"
                 src="assets/club-logo.webp"
@@ -301,7 +307,7 @@
                 loading="lazy"
               />
               <div>
-                <span class="photo-badge-label">Currently</span>
+                <span class="hero-badge-label">Currently</span>
                 <strong>Club</strong>
               </div>
             </div>

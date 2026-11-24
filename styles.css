@@ -28,6 +28,15 @@
   --aurora-2: rgba(6, 182, 212, 0.13);
   --aurora-3: rgba(168, 85, 247, 0.12);
 
+  /* Hero code card syntax colours — all >= 4.5:1 on --surface and --surface-2. */
+  --code-text: #131319;
+  --code-kw: #a8329c;
+  --code-type: #0e6b77;
+  --code-str: #b9271c;
+  --code-num: #3b28c8;
+  --code-fn: #0a5da8;
+  --code-member: #6c36a9;
+
   --shadow-sm: 0 1px 2px rgba(16, 16, 32, 0.05);
   --shadow-md: 0 4px 16px -4px rgba(16, 16, 32, 0.1), 0 2px 6px -2px rgba(16, 16, 32, 0.06);
   --shadow-lg: 0 24px 48px -16px rgba(16, 16, 32, 0.18), 0 8px 20px -8px rgba(16, 16, 32, 0.1);
@@ -66,6 +75,14 @@
   --accent-glow: rgba(120, 90, 255, 0.22);
   --aurora-2: rgba(34, 211, 238, 0.14);
   --aurora-3: rgba(217, 70, 239, 0.13);
+
+  --code-text: #f2f2f6;
+  --code-kw: #ff7ab2;
+  --code-type: #5dd8ff;
+  --code-str: #ff8170;
+  --code-num: #d9c97c;
+  --code-fn: #67b7a4;
+  --code-member: #b18cf0;
 
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
   --shadow-md: 0 4px 16px -4px rgba(0, 0, 0, 0.5), 0 2px 6px -2px rgba(0, 0, 0, 0.4);
@@ -475,7 +492,7 @@ p {
   }
 
   .aurora,
-  .hero-photo {
+  .hero-card {
     animation: none !important;
   }
 
@@ -488,7 +505,7 @@ p {
     transform: none;
   }
 
-  .photo-frame {
+  .code-card {
     transform: none !important;
   }
 }
@@ -883,15 +900,15 @@ p {
   margin-top: 28px;
 }
 
-/* Photo */
-.hero-photo {
+/* Code card */
+.hero-card {
   position: relative;
   justify-self: center;
-  width: min(360px, 100%);
+  width: min(420px, 100%);
   animation: float 7s ease-in-out infinite;
 }
 
-.photo-frame {
+.code-card {
   position: relative;
   border-radius: var(--r-xl);
   padding: 6px;
@@ -902,16 +919,97 @@ p {
   will-change: transform;
 }
 
-.hero-photo.is-tilting .photo-frame {
+.hero-card.is-tilting .code-card {
   transition: transform 0.08s linear;
 }
 
-.photo-frame img {
-  width: 100%;
-  aspect-ratio: 1;
-  object-fit: cover;
+.code-card-window {
+  --code-pad: 20px;
+  container-type: inline-size;
+  overflow: hidden;
   border-radius: calc(var(--r-xl) - 5px);
+  background: var(--surface);
+}
+
+.code-card-bar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 11px var(--code-pad);
   background: var(--surface-2);
+  border-bottom: 1px solid var(--border);
+}
+
+.code-card-dots {
+  display: flex;
+  gap: 7px;
+}
+
+.code-card-dots span {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #ff5f57;
+}
+
+.code-card-dots span:nth-child(2) {
+  background: #febc2e;
+}
+
+.code-card-dots span:nth-child(3) {
+  background: #28c840;
+}
+
+.code-card-file {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--text-2);
+}
+
+/* The longest line is 46 characters and a monospace glyph is ~0.6em wide, so
+   sizing the font from the card's inline size keeps every line on one row at
+   any width instead of wrapping mid-token. */
+.code-card-body {
+  margin: 0;
+  padding: calc(var(--code-pad) - 2px) var(--code-pad) var(--code-pad);
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-size: min(0.875rem, (100cqi - 2 * var(--code-pad)) / 28.6);
+  line-height: 1.65;
+  white-space: pre;
+  tab-size: 4;
+  font-variant-ligatures: none;
+  color: var(--code-text);
+}
+
+.code-card-body code {
+  font: inherit;
+}
+
+.tok-kw {
+  color: var(--code-kw);
+  font-weight: 500;
+}
+
+.tok-type {
+  color: var(--code-type);
+}
+
+.tok-str {
+  color: var(--code-str);
+}
+
+.tok-num {
+  color: var(--code-num);
+}
+
+.tok-fn {
+  color: var(--code-fn);
+}
+
+.tok-member {
+  color: var(--code-member);
 }
 
 @keyframes float {
@@ -924,10 +1022,12 @@ p {
   }
 }
 
-.photo-badge {
+/* Sits on the bottom-right edge, where the snippet's closing braces leave
+   empty space, so it never covers code. */
+.hero-badge {
   position: absolute;
-  left: -28px;
-  bottom: 26px;
+  right: -20px;
+  bottom: -22px;
   display: flex;
   align-items: center;
   gap: 11px;
@@ -940,7 +1040,7 @@ p {
   line-height: 1.35;
 }
 
-.photo-badge img {
+.hero-badge img {
   width: 36px;
   height: 36px;
   border-radius: 9px;
@@ -948,11 +1048,11 @@ p {
   background: #fff;
 }
 
-.photo-badge img.logo-bleed {
+.hero-badge img.logo-bleed {
   border-radius: 8px;
 }
 
-.photo-badge-label {
+.hero-badge-label {
   display: block;
   font-size: 0.7rem;
   text-transform: uppercase;
@@ -960,7 +1060,7 @@ p {
   color: var(--muted);
 }
 
-.photo-badge strong {
+.hero-badge strong {
   font-size: 0.87rem;
   white-space: nowrap;
 }
@@ -1498,7 +1598,7 @@ p {
 /* A logo that already carries its own full-bleed background needs no white
    tile, padding or border behind it. */
 .tl-company img.logo-bleed,
-.photo-badge img.logo-bleed {
+.hero-badge img.logo-bleed {
   padding: 0;
   background: none;
   border: none;
@@ -1982,21 +2082,18 @@ p {
     gap: 44px;
   }
 
-  .hero-photo {
+  .hero-card {
     order: -1;
-    width: min(260px, 60%);
+    width: min(440px, 100%);
     justify-self: start;
-  }
-
-  /* The float reads as jitter once the photo sits inline above the copy. */
-  .photo-frame {
+    /* The float reads as jitter once the card sits inline above the copy. */
     animation: none;
   }
 
-  .photo-badge {
-    left: auto;
-    right: -20px;
-    bottom: 16px;
+  /* The card is full width here, so keep the badge inside the viewport. */
+  .hero-badge {
+    right: 14px;
+    bottom: -20px;
   }
 
   .bento {
@@ -2070,8 +2167,8 @@ p {
     margin-block: 16px 4px;
   }
 
-  .hero-photo {
-    width: min(200px, 56%);
+  .code-card-window {
+    --code-pad: 14px;
   }
 
   .hero-rail {
@@ -2128,14 +2225,14 @@ p {
     margin-top: 26px;
   }
 
-  .photo-badge {
-    right: -10px;
-    bottom: -16px;
+  .hero-badge {
+    right: 10px;
+    bottom: -18px;
     padding: 8px 13px 8px 9px;
     gap: 9px;
   }
 
-  .photo-badge img {
+  .hero-badge img {
     width: 30px;
     height: 30px;
   }
@@ -2145,11 +2242,11 @@ p {
     height: 12px;
   }
 
-  .photo-badge strong {
+  .hero-badge strong {
     font-size: 0.79rem;
   }
 
-  .photo-badge-label {
+  .hero-badge-label {
     font-size: 0.64rem;
   }
 
@@ -2384,7 +2481,7 @@ p {
     padding: 12px 0;
   }
 
-  .photo-frame {
+  .hero-card {
     animation: none;
   }
 }
