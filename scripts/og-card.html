@@ -7,7 +7,7 @@
   body { width:1200px; height:630px; overflow:hidden;
          font-family:"Inter",system-ui,sans-serif; background:#09090e; color:#f2f2f6; }
   .card { position:relative; width:1200px; height:630px; padding:64px 68px;
-          display:flex; align-items:center; gap:56px; overflow:hidden; }
+          display:flex; align-items:center; gap:48px; overflow:hidden; }
   .glow { position:absolute; border-radius:50%; }
   .g1 { width:760px; height:760px; top:-260px; right:-160px;
         background:radial-gradient(circle,rgba(120,90,255,.40),transparent 66%); }
@@ -40,10 +40,21 @@
          padding:7px 14px; border-radius:999px;
          border:1px solid rgba(155,135,255,.34); background:rgba(155,135,255,.11); }
 
-  .photo { position:relative; flex:none; width:330px; height:330px; border-radius:34px;
-           padding:6px; background:linear-gradient(150deg,#9b87ff,rgba(155,135,255,.18) 58%,rgba(155,135,255,.06));
-           box-shadow:0 34px 70px -22px rgba(0,0,0,.85); }
-  .photo img { width:100%; height:100%; object-fit:cover; border-radius:29px; display:block; }
+  .code { position:relative; flex:none; width:450px; border-radius:30px; padding:6px;
+          background:linear-gradient(150deg,#9b87ff,rgba(155,135,255,.18) 58%,rgba(155,135,255,.06));
+          box-shadow:0 34px 70px -22px rgba(0,0,0,.85); }
+  .win { border-radius:25px; overflow:hidden; background:#14141d; }
+  .bar { display:flex; align-items:center; gap:14px; padding:14px 22px;
+         background:#1b1b26; border-bottom:1px solid #242430; }
+  .dots { display:flex; gap:8px; }
+  .dots i { width:12px; height:12px; border-radius:50%; background:#ff5f57; }
+  .dots i:nth-child(2) { background:#febc2e; }
+  .dots i:nth-child(3) { background:#28c840; }
+  .file { font-family:"JetBrains Mono",monospace; font-size:15px; color:#b8b8c8; }
+  pre { padding:20px 22px 24px; font-family:"JetBrains Mono",monospace; font-size:14px;
+        line-height:1.65; color:#f2f2f6; white-space:pre; font-variant-ligatures:none; }
+  .kw { color:#ff7ab2; font-weight:500; } .ty { color:#5dd8ff; } .st { color:#ff8170; }
+  .nu { color:#d9c97c; } .fn { color:#67b7a4; } .me { color:#b18cf0; }
 </style></head>
 <body>
   <div class="card">
@@ -70,6 +81,21 @@
         <span class="tag">TypeScript</span>
       </div>
     </div>
-    <div class="photo"><img src="../assets/profile.webp" alt="" /></div>
+    <div class="code">
+      <div class="win">
+        <div class="bar"><span class="dots"><i></i><i></i><i></i></span><span class="file">Engineer.swift</span></div>
+<pre><span class="kw">struct</span> <span class="ty">Engineer</span> {
+    <span class="kw">let</span> name = <span class="st">"Noman Ahmad"</span>
+    <span class="kw">let</span> role = <span class="st">"Senior Mobile Engineer"</span>
+    <span class="kw">let</span> stack = [<span class="st">"Swift"</span>, <span class="st">"SwiftUI"</span>,
+                 <span class="st">"React Native"</span>, <span class="st">"TypeScript"</span>]
+    <span class="kw">let</span> usersServed = <span class="nu">400_000</span>
+
+    <span class="kw">func</span> <span class="fn">ship</span>() -&gt; <span class="ty">App</span> {
+        <span class="ty">App</span>(platforms: [.<span class="me">iOS</span>, .<span class="me">android</span>])
+    }
+}</pre>
+      </div>
+    </div>
   </div>
 </body></html>
